@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsAspireHost>true</IsAspireHost>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\services\identity\TripAhead.Identity.API\TripAhead.Identity.API.csproj" />
+        <ProjectReference Include="..\services\reservations\TripAhead.Reservations.API\TripAhead.Reservations.API.csproj" />
+        <ProjectReference Include="..\services\Trips\TripAhead.Trips.Api\TripAhead.Trips.Api.csproj" />
+        <ProjectReference Include="..\TripAhead.Web\TripAhead.Web.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.24105.21"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="appsettings.Development.json" />
+    </ItemGroup>
+
+</Project>

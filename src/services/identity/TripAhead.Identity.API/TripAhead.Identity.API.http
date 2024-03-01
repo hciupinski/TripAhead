@@ -1,0 +1,6 @@
+@TripAhead.Identity.API_HostAddress = http://localhost:5046
+
+GET {{TripAhead.Identity.API_HostAddress}}/
+Accept: application/json
+
+###

@@ -1,0 +1,33 @@
+﻿@page "/weather"
+@using TripAhead.Web.Clients
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject TripsApiClient TripsApi
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data loaded from a backend API service.</p>
+
+@if (_response == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <h1>@(_response)</h1>
+}
+
+@code {
+    private string? _response;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _response = await TripsApi.GetAsync();
+    }
+
+}
