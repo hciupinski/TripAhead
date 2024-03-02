@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\TripAhead.ServiceDefaults\TripAhead.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\TripAhead.Trips.Infrastructure\TripAhead.Trips.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

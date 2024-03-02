@@ -16,13 +16,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reservations", "reservation
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pdf-generator", "pdf-generator", "{56766C33-72D7-493A-A527-231DCCD023CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Trips.Api", "src\services\Trips\TripAhead.Trips.Api\TripAhead.Trips.Api.csproj", "{E7989C5F-6ECD-4F96-9939-6E33F49691C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Trips.API", "src\services\Trips\TripAhead.Trips.API\TripAhead.Trips.API.csproj", "{E7989C5F-6ECD-4F96-9939-6E33F49691C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Reservations.API", "src\services\reservations\TripAhead.Reservations.API\TripAhead.Reservations.API.csproj", "{51D45039-6A80-4BD2-99A3-406DE30144F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Identity.API", "src\services\identity\TripAhead.Identity.API\TripAhead.Identity.API.csproj", "{37F7B7DA-0ADD-4BE5-BAAB-F8700A5D4B20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.ServiceDefaults", "src\TripAhead.ServiceDefaults\TripAhead.ServiceDefaults.csproj", "{FD4344D5-DD07-4519-B191-5993354FA2CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Trips.Domain", "src\services\trips\TripAhead.Trips.Domain\TripAhead.Trips.Domain.csproj", "{8DEB18B2-13BF-4A21-AF53-E4C12A620ED5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Trips.Infrastructure", "src\services\trips\TripAhead.Trips.Infrastructure\TripAhead.Trips.Infrastructure.csproj", "{2FEA781A-CCE3-4C20-913D-36AC49D460FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Trips.Application", "src\services\trips\TripAhead.Trips.Application\TripAhead.Trips.Application.csproj", "{F5342CDB-BB9F-4BA9-86C6-724ED2F12A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Reservations.Domain", "src\services\reservations\TripAhead.Reservations.Domain\TripAhead.Reservations.Domain.csproj", "{338E1845-5F9E-46DB-AC6A-86D5D0DFECA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Reservations.Infrastructure", "src\services\reservations\TripAhead.Reservations.Infrastructure\TripAhead.Reservations.Infrastructure.csproj", "{9CE61621-E91F-40E2-899E-17765DA4C75B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Reservations.Application", "src\services\reservations\TripAhead.Reservations.Application\TripAhead.Reservations.Application.csproj", "{6F0D9185-1E18-4F40-9E28-5EDB42264DD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +66,30 @@ Global
 		{FD4344D5-DD07-4519-B191-5993354FA2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD4344D5-DD07-4519-B191-5993354FA2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD4344D5-DD07-4519-B191-5993354FA2CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DEB18B2-13BF-4A21-AF53-E4C12A620ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DEB18B2-13BF-4A21-AF53-E4C12A620ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DEB18B2-13BF-4A21-AF53-E4C12A620ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DEB18B2-13BF-4A21-AF53-E4C12A620ED5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FEA781A-CCE3-4C20-913D-36AC49D460FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEA781A-CCE3-4C20-913D-36AC49D460FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEA781A-CCE3-4C20-913D-36AC49D460FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEA781A-CCE3-4C20-913D-36AC49D460FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5342CDB-BB9F-4BA9-86C6-724ED2F12A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5342CDB-BB9F-4BA9-86C6-724ED2F12A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5342CDB-BB9F-4BA9-86C6-724ED2F12A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5342CDB-BB9F-4BA9-86C6-724ED2F12A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338E1845-5F9E-46DB-AC6A-86D5D0DFECA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338E1845-5F9E-46DB-AC6A-86D5D0DFECA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338E1845-5F9E-46DB-AC6A-86D5D0DFECA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338E1845-5F9E-46DB-AC6A-86D5D0DFECA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE61621-E91F-40E2-899E-17765DA4C75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE61621-E91F-40E2-899E-17765DA4C75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE61621-E91F-40E2-899E-17765DA4C75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE61621-E91F-40E2-899E-17765DA4C75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0D9185-1E18-4F40-9E28-5EDB42264DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0D9185-1E18-4F40-9E28-5EDB42264DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0D9185-1E18-4F40-9E28-5EDB42264DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0D9185-1E18-4F40-9E28-5EDB42264DD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +105,11 @@ Global
 		{E7989C5F-6ECD-4F96-9939-6E33F49691C6} = {9D484A4B-C7DB-4B30-A56E-E860A1BE1A12}
 		{51D45039-6A80-4BD2-99A3-406DE30144F9} = {F606BD15-F4FF-4B87-BC83-83276DD6ABC3}
 		{37F7B7DA-0ADD-4BE5-BAAB-F8700A5D4B20} = {C0B90CA9-6935-4B26-9024-F3EA6A2BE3E5}
+		{8DEB18B2-13BF-4A21-AF53-E4C12A620ED5} = {9D484A4B-C7DB-4B30-A56E-E860A1BE1A12}
+		{2FEA781A-CCE3-4C20-913D-36AC49D460FA} = {9D484A4B-C7DB-4B30-A56E-E860A1BE1A12}
+		{F5342CDB-BB9F-4BA9-86C6-724ED2F12A46} = {9D484A4B-C7DB-4B30-A56E-E860A1BE1A12}
+		{338E1845-5F9E-46DB-AC6A-86D5D0DFECA2} = {F606BD15-F4FF-4B87-BC83-83276DD6ABC3}
+		{9CE61621-E91F-40E2-899E-17765DA4C75B} = {F606BD15-F4FF-4B87-BC83-83276DD6ABC3}
+		{6F0D9185-1E18-4F40-9E28-5EDB42264DD6} = {F606BD15-F4FF-4B87-BC83-83276DD6ABC3}
 	EndGlobalSection
 EndGlobal
