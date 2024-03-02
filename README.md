@@ -2,8 +2,6 @@
 
 ## Overview
 
----
-
 Introducing TripAhead: The ultimate adventure planner for thrill-seekers who want to ride the waves, shred the slopes, and skate through life like a boss! 🏄‍♂️🏂
 
 This project takes part in the "[100commitów](https://100commitow.pl)" challenge.
@@ -12,7 +10,6 @@ The general goal of the project is to use the benefits from the Microsoft to obt
 
 ## Roadmap
 
----
 ### Must-have
 
 **General**
@@ -44,8 +41,6 @@ The general goal of the project is to use the benefits from the Microsoft to obt
 - [ ] External authentication providers
 
 ## How to run it
-
----
 
 It is not possible now.
 
