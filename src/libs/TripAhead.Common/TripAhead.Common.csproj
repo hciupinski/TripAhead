@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\libs\TripAhead.Common\TripAhead.Common.csproj" />
+      <PackageReference Include="MediatR" Version="12.2.0" />
     </ItemGroup>
 
 </Project>
