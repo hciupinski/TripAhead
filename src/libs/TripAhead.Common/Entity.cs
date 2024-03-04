@@ -10,4 +10,12 @@ public abstract class Entity
     {
         Id = Guid.NewGuid();
     }
+    
+    public List<IDomainEvent> TakeEvents()
+    {
+        var events = _domainEvents.ToList();
+        _domainEvents.Clear();
+
+        return events;
+    }
 }

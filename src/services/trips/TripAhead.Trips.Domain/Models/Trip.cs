@@ -15,4 +15,18 @@ public class Trip : Entity
     public bool IsPublished { get; private set; }
 
     public IReadOnlyCollection<OptionalItem> OptionalItems => _optionalItems;
+    
+    private Trip()
+    {
+    }
+
+    public Trip(string name, string description, DateTime startDate, DateTime endDate, int maxOccupancy, decimal price)
+    {
+        Name = name;
+        Description = description;
+        StartDate = startDate;
+        EndDate = endDate;
+        MaxOccupancy = maxOccupancy;
+        Price = price;
+    }
 }
