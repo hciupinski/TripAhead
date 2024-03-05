@@ -1,6 +1,22 @@
-@TripAhead.Trips.Api_HostAddress = http://localhost:5011
+@TripAhead.Trips.Api_HostAddress = http://localhost:5011/api/v1
 
-GET {{TripAhead.Trips.Api_HostAddress}}/
+###
+# @name Get all trips
+GET {{TripAhead.Trips.Api_HostAddress}}/trips
 Accept: application/json
 
 ###
+
+###
+# @name Add trip
+PUT {{TripAhead.Trips.Api_HostAddress}}/trips
+Content-Type: application/json
+
+{
+  "name": "n",
+  "description": "d",
+  "startDate": "2023-04-21T18:25:43-05:00",
+  "endDate": "2023-04-22T20:25:50-05:00",
+  "maxOccupancy": 5,
+  "price": 200
+}

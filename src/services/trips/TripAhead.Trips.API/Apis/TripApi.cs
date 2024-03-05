@@ -17,7 +17,7 @@ public static class TripApi
         return app;
     }
 
-    public static async Task<Results<Ok<List<Trip>>, BadRequest<string>>> GetAllTrips([AsParameters] IMediator mediator)
+    public static async Task<Results<Ok<List<Trip>>, BadRequest<string>>> GetAllTrips([FromServices] IMediator mediator)
     {
         var results = await mediator.Send(new GetTrips.Query());
 
@@ -26,7 +26,7 @@ public static class TripApi
 
     public static async Task<Created> CreateTrip(
         [FromBody]AddTrip.Command request,
-        [AsParameters] IMediator mediator)
+        [FromServices] IMediator mediator)
     {
         var tripId = await mediator.Send(request);
         return TypedResults.Created($"/api/v1/trips/{tripId}");

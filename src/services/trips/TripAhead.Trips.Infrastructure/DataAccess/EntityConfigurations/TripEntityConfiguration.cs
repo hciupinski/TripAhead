@@ -18,8 +18,8 @@ public class TripEntityConfiguration : IEntityTypeConfiguration<Trip>
         builder.Property(t => t.Description)
             .HasMaxLength(350);
 
-        builder.HasMany(t => t.OptionalItems)
-            .WithOne()
+        builder.HasMany(t => t.Options)
+            .WithOne(o => o.Trip)
             .HasPrincipalKey(t => t.Id)
             .HasForeignKey(x => x.TripId)
             .OnDelete(DeleteBehavior.Cascade);

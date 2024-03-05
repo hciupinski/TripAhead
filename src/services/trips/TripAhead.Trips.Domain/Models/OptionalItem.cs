@@ -6,15 +6,16 @@ namespace TripAhead.Trips.Domain.Models;
 public class OptionalItem : Entity
 {
     public OptionalItemType Type { get; init; }
-    public Guid TripId { get; init; }
-    public virtual Trip Trip { get; init; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public decimal DefaultPrice { get; set; }
+    
+    public virtual List<TripOptionalItem> TripOptionalItems { get; set; }
     
     private OptionalItem() {}
 
-    public OptionalItem(Trip trip, OptionalItemType type)
+    public OptionalItem(OptionalItemType type, string name, string description)
     {
-        Trip = trip;
-        TripId = TripId;
         Type = type;
     }
 }

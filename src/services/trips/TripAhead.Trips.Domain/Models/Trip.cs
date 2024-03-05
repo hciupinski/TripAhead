@@ -4,7 +4,7 @@ namespace TripAhead.Trips.Domain.Models;
 
 public class Trip : Entity
 {
-    private List<OptionalItem> _optionalItems = new ();
+    private List<TripOptionalItem> _tripOptions = new ();
     
     public string Name { get; private set; }
     public string Description { get; private set; }
@@ -14,7 +14,7 @@ public class Trip : Entity
     public decimal Price { get; private set; }
     public bool IsPublished { get; private set; }
 
-    public IReadOnlyCollection<OptionalItem> OptionalItems => _optionalItems;
+    public IReadOnlyCollection<TripOptionalItem> Options => _tripOptions;
     
     private Trip()
     {

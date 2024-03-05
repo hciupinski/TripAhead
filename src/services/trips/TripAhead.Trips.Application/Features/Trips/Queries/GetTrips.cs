@@ -6,7 +6,7 @@ namespace TripAhead.Trips.Application.Features.Trips.Queries;
 
 public class GetTrips
 {
-    public record Query : IRequest<List<Trip>>;
+    public record Query() : IRequest<List<Trip>>;
 
     public class Handler(ITripRepository tripRepository) : IRequestHandler<Query, List<Trip>>
     {
