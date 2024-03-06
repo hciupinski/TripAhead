@@ -9,8 +9,8 @@ public class AddTrip
     public record Command(
         string Name,
         string Description,
-        DateTime StartDate,
-        DateTime EndDate,
+        DateTimeOffset StartDate,
+        DateTimeOffset EndDate,
         int MaxOccupancy,
         decimal Price) : IRequest<Guid>;
 

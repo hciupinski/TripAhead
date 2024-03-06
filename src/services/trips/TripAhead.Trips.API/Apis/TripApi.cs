@@ -25,8 +25,8 @@ public static class TripApi
     }
 
     public static async Task<Created> CreateTrip(
-        [FromBody]AddTrip.Command request,
-        [FromServices] IMediator mediator)
+        [FromServices] IMediator mediator,
+        [FromBody]AddTrip.Command request)
     {
         var tripId = await mediator.Send(request);
         return TypedResults.Created($"/api/v1/trips/{tripId}");

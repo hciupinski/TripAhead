@@ -6,17 +6,33 @@ GET {{TripAhead.Trips.Api_HostAddress}}/trips
 Accept: application/json
 
 ###
-
-###
 # @name Add trip
 PUT {{TripAhead.Trips.Api_HostAddress}}/trips
 Content-Type: application/json
 
 {
-  "name": "n",
-  "description": "d",
-  "startDate": "2023-04-21T18:25:43-05:00",
-  "endDate": "2023-04-22T20:25:50-05:00",
+  "name": "Bali - Eastern Jam",
+  "description": "The paradise for surfers.",
+  "startDate": "2023-04-21T18:25:43+01:00",
+  "endDate": "2023-04-22T20:25:50+01:00",
   "maxOccupancy": 5,
-  "price": 200
+  "price": 2000
+}
+
+### ----------
+
+###
+# @name Get all optional items
+GET {{TripAhead.Trips.Api_HostAddress}}/optional-items
+Accept: application/json
+
+###
+# @name Add optional item - Equipment
+PUT {{TripAhead.Trips.Api_HostAddress}}/optional-items
+Content-Type: application/json
+
+{
+  "name": "Surfboard",
+  "description": "Longboard 9'0; Soft; Navy blue;",
+  "type": "1" 
 }

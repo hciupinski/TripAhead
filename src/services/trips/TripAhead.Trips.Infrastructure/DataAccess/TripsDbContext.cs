@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TripAhead.Common;
 using TripAhead.Trips.Domain.Models;
+using TripAhead.Trips.Infrastructure.DataAccess.Converters;
 using TripAhead.Trips.Infrastructure.DataAccess.EntityConfigurations;
 
 namespace TripAhead.Trips.Infrastructure.DataAccess;
@@ -16,6 +17,13 @@ public class TripsDbContext(DbContextOptions<TripsDbContext> options, IPublisher
         builder.HasDefaultSchema("trips");
         builder.ApplyConfiguration(new TripEntityConfiguration());
         builder.ApplyConfiguration(new OptionalItemEntityConfiguration());
+    }
+    
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder
+            .Properties<DateTimeOffset>()
+            .HaveConversion<DateTimeOffsetConverter>();
     }
     
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

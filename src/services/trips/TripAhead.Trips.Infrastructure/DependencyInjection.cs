@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TripAhead.Trips.Application.Features.Trips.Queries;
+using TripAhead.Trips.Domain.Models;
 using TripAhead.Trips.Domain.Repositories;
 using TripAhead.Trips.Infrastructure.DataAccess;
 using TripAhead.Trips.Infrastructure.Persistance;
@@ -34,6 +35,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("TripContext")));
 
         services.AddScoped<ITripRepository, TripRepository>();
+        services.AddScoped<IOptionalItemRepository, OptionalItemRepository>();
 
         return services;
     }

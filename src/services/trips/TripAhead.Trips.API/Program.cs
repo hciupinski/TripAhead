@@ -4,7 +4,6 @@ using TripAhead.Trips.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Console.WriteLine("con" + builder.Configuration.GetConnectionString("TripContext"));
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 
@@ -25,6 +24,10 @@ app.MapDefaultEndpoints();
 app.MapGroup("/api/v1/trips")
     .WithTags("Trip API")
     .MapTripApi();
+
+app.MapGroup("/api/v1/optional-items")
+    .WithTags("Optional Item API")
+    .MapOptionalItemApi();
 
 await app.Services.MigrateAsync();
 
