@@ -27,6 +27,11 @@ GET {{TripAhead.Trips.Api_HostAddress}}/optional-items
 Accept: application/json
 
 ###
+# @name Get optional item by id
+GET {{TripAhead.Trips.Api_HostAddress}}/optional-items/{id}
+Accept: application/json
+
+###
 # @name Add optional item - Equipment
 PUT {{TripAhead.Trips.Api_HostAddress}}/optional-items
 Content-Type: application/json
@@ -36,3 +41,8 @@ Content-Type: application/json
   "description": "Longboard 9'0; Soft; Navy blue;",
   "type": "1" 
 }
+
+###
+# @name Remove optional item by id
+DELETE {{TripAhead.Trips.Api_HostAddress}}/optional-items/{id}
+Accept: application/json

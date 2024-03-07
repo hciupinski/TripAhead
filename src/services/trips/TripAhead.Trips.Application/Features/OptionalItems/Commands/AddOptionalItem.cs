@@ -10,13 +10,14 @@ public class AddOptionalItem
     public record Command(
         OptionalItemType Type,
         string Name,
-        string Description) : IRequest<Guid>;
+        string Description,
+        decimal Price) : IRequest<Guid>;
 
     public class Handler(IOptionalItemRepository optionalItemRepository) : IRequestHandler<Command, Guid>
     {
         public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
         {
-            var optionalItem = new OptionalItem(request.Type, request.Name, request.Description);
+            var optionalItem = new OptionalItem(request.Type, request.Name, request.Description, request.Price);
 
             await optionalItemRepository.AddAsync(optionalItem, cancellationToken);
 

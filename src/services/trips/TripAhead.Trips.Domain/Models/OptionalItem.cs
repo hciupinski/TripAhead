@@ -14,8 +14,24 @@ public class OptionalItem : Entity
     
     private OptionalItem() {}
 
-    public OptionalItem(OptionalItemType type, string name, string description)
+    public OptionalItem(OptionalItemType type, string name, string description, decimal price)
     {
         Type = type;
+        Name = name;
+        Description = description;
+        DefaultPrice = price;
+    }
+
+    public OptionalItem Modify(string name, string description)
+    {
+        Name = name;
+        Description = description;
+        return this;
+    }
+
+    public OptionalItem SetPrice(decimal price)
+    {
+        DefaultPrice = price;
+        return this;
     }
 }
