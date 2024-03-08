@@ -6,6 +6,12 @@ GET {{TripAhead.Trips.Api_HostAddress}}/trips
 Accept: application/json
 
 ###
+# @name Get trip
+@id = f668580a-d283-4af1-86c4-9cc50bd09cad
+GET {{TripAhead.Trips.Api_HostAddress}}/trips/{{id}}
+Accept: application/json
+
+###
 # @name Add trip
 PUT {{TripAhead.Trips.Api_HostAddress}}/trips
 Content-Type: application/json
@@ -17,6 +23,26 @@ Content-Type: application/json
   "endDate": "2023-04-22T20:25:50+01:00",
   "maxOccupancy": 5,
   "price": 2000
+}
+
+###
+# @name Update trip
+POST {{TripAhead.Trips.Api_HostAddress}}/trips/
+Content-Type: application/json
+
+{
+  "id": "f668580a-d283-4af1-86c4-9cc50bd09cad",
+  "name": "Bali - Eastern Jam",
+  "description": "The paradise for surfers.",
+  "startDate": "2023-04-21T18:25:43+01:00",
+  "endDate": "2023-04-22T20:25:50+01:00",
+  "maxOccupancy": 5,
+  "price": 2000,
+  "optionalItems": [
+    {
+      "optionalItemId": "c75f20ff-bc54-4fc8-888d-f30f1f757ce5"
+    }
+  ]
 }
 
 ### ----------
@@ -37,9 +63,10 @@ PUT {{TripAhead.Trips.Api_HostAddress}}/optional-items
 Content-Type: application/json
 
 {
-  "name": "Surfboard",
-  "description": "Longboard 9'0; Soft; Navy blue;",
-  "type": "1" 
+  "name": "Sits training - begginer",
+  "description": "Two days of training",
+  "type": 2,
+  "price": 600
 }
 
 ###

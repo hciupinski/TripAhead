@@ -18,6 +18,8 @@ public class TripOptionalItemEntityConfiguration : IEntityTypeConfiguration<Trip
 
         builder.HasOne(toi => toi.OptionalItem)
             .WithMany()
+            .HasPrincipalKey(o => o.Id)
+            .HasForeignKey(toi => toi.OptionalItemId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

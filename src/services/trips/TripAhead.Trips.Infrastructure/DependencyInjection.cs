@@ -1,12 +1,11 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TripAhead.Trips.Application.Features.Trips.Queries;
-using TripAhead.Trips.Domain.Models;
 using TripAhead.Trips.Domain.Repositories;
 using TripAhead.Trips.Infrastructure.DataAccess;
 using TripAhead.Trips.Infrastructure.Persistance;
+using TripAhead.Trips.Infrastructure.Persistence;
 
 namespace TripAhead.Trips.Infrastructure;
 

@@ -12,7 +12,7 @@ public class OptionalItemRepository(TripsDbContext dbContext) : IOptionalItemRep
 
     public async Task<OptionalItem?> FindAsync(Guid optionalItemId, CancellationToken cancellationToken)
         => await dbContext.OptionalItems.FindAsync(optionalItemId, cancellationToken);
-
+    
     public async Task AddAsync(OptionalItem optionalItem, CancellationToken cancellationToken)
     {
         await dbContext.AddAsync(optionalItem, cancellationToken);

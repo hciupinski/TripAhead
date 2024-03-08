@@ -12,11 +12,14 @@ public class TripsDbContext(DbContextOptions<TripsDbContext> options, IPublisher
     public DbSet<Trip> Trips { get; set; }
     public DbSet<OptionalItem> OptionalItems { get; set; }
     
+    public DbSet<TripOptionalItem> TripOptionalItems { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.HasDefaultSchema("trips");
         builder.ApplyConfiguration(new TripEntityConfiguration());
         builder.ApplyConfiguration(new OptionalItemEntityConfiguration());
+        builder.ApplyConfiguration(new TripOptionalItemEntityConfiguration());
     }
     
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

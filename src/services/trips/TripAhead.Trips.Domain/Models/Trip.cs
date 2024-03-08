@@ -29,4 +29,33 @@ public class Trip : Entity
         MaxOccupancy = maxOccupancy;
         Price = price;
     }
+
+    public Trip Modify(string name, string description, int maxOccupancy)
+    {
+        Name = name;
+        Description = description;
+        MaxOccupancy = maxOccupancy;
+        return this;
+    }
+
+    public Trip SetDate(DateTimeOffset startDate, DateTimeOffset endDate)
+    {
+        StartDate = startDate;
+        EndDate = endDate;
+
+        return this;
+    }
+
+    public Trip SetPrice(decimal price)
+    {
+        Price = price;
+        return this;
+    }
+
+    public Trip AssignOptionalItems(List<TripOptionalItem> chosenOptionalItems)
+    {
+        _tripOptions.Clear();
+        _tripOptions.AddRange(chosenOptionalItems);
+        return this;
+    }
 }
