@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TripAhead.Reservations.Domain\TripAhead.Reservations.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

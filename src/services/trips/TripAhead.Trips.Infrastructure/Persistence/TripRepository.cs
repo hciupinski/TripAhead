@@ -42,4 +42,9 @@ public class TripRepository(TripsDbContext dbContext) : ITripRepository
         dbContext.Trips.Remove(item);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
 }

@@ -12,11 +12,11 @@ public static class OptionalItemApi
     public static IEndpointRouteBuilder MapOptionalItemApi(this IEndpointRouteBuilder app)
     {
         app.MapGet("/", GetAllOptionalItems);
-        app.MapGet("/{id}", GetAllOptionalItems);
+        app.MapGet("/{id:guid}", GetAllOptionalItems);
         
         app.MapPut("/", CreateOptionalItem);
-        app.MapPost("/{id}", UpdateOptionalItem);
-        app.MapDelete("/{id}", RemoveOptionalItem);
+        app.MapPost("/{id:guid}", UpdateOptionalItem);
+        app.MapDelete("/{id:guid}", RemoveOptionalItem);
         
         return app;
     }

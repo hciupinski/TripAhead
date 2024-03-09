@@ -15,7 +15,10 @@ public static class TripApi
         app.MapGet("/{id:guid}", GetTrip);
         
         app.MapPut("/", CreateTrip);
-        app.MapPost("/", UpdateTrip);
+        app.MapPost("/{id:guid}", UpdateTrip);
+        app.MapDelete("/{id:guid}", RemoveTrip);
+
+        app.MapPost("/publish/{id:guid}", PublishTrip);
         
         return app;
     }
@@ -56,9 +59,17 @@ public static class TripApi
     
     public static async Task<Ok> RemoveTrip(
         [FromServices] IMediator mediator,
-        [FromQuery] Guid id)
+        Guid id)
     {
-        await mediator.Send(new RemoveOptionalItem.Command(id));
+        await mediator.Send(new RemoveTrip.Command(id));
+        return TypedResults.Ok();
+    }
+    
+    public static async Task<Ok> PublishTrip(
+        [FromServices] IMediator mediator,
+        Guid id)
+    {
+        await mediator.Send(new PublishTrip.Command(id));
         return TypedResults.Ok();
     }
 }

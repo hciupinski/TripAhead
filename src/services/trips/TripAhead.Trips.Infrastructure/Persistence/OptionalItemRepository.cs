@@ -30,4 +30,9 @@ public class OptionalItemRepository(TripsDbContext dbContext) : IOptionalItemRep
         dbContext.OptionalItems.Remove(optionalItem);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
+    
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
 }

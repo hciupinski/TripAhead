@@ -1,4 +1,5 @@
 using TripAhead.Common;
+using TripAhead.Trips.Domain.Events;
 
 namespace TripAhead.Trips.Domain.Models;
 
@@ -13,6 +14,8 @@ public class Trip : Entity
     public int MaxOccupancy { get; private set; }
     public decimal Price { get; private set; }
     public bool IsPublished { get; private set; }
+    
+    public int CurrentOccupancy { get; private set; }
 
     public IReadOnlyCollection<TripOptionalItem> Options => _tripOptions;
     
@@ -56,6 +59,13 @@ public class Trip : Entity
     {
         _tripOptions.Clear();
         _tripOptions.AddRange(chosenOptionalItems);
+        return this;
+    }
+
+    public Trip Publish()
+    {
+        IsPublished = true;
+        _domainEvents.Add(new TripPublished(Id));
         return this;
     }
 }
