@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{2A6BB56A-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Common", "src\libs\TripAhead.Common\TripAhead.Common.csproj", "{1827DD58-D338-4B10-9587-C9A1EEF40507}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Infrastructure.Common", "src\libs\TripAhead.Infrastructure.Common\TripAhead.Infrastructure.Common.csproj", "{DE959106-8643-4C13-B924-E87B1719BB75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{1827DD58-D338-4B10-9587-C9A1EEF40507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1827DD58-D338-4B10-9587-C9A1EEF40507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1827DD58-D338-4B10-9587-C9A1EEF40507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE959106-8643-4C13-B924-E87B1719BB75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE959106-8643-4C13-B924-E87B1719BB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE959106-8643-4C13-B924-E87B1719BB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE959106-8643-4C13-B924-E87B1719BB75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +126,6 @@ Global
 		{9CE61621-E91F-40E2-899E-17765DA4C75B} = {F606BD15-F4FF-4B87-BC83-83276DD6ABC3}
 		{6F0D9185-1E18-4F40-9E28-5EDB42264DD6} = {F606BD15-F4FF-4B87-BC83-83276DD6ABC3}
 		{1827DD58-D338-4B10-9587-C9A1EEF40507} = {2A6BB56A-C0D1-42BB-B592-876A0E3F1F9B}
+		{DE959106-8643-4C13-B924-E87B1719BB75} = {2A6BB56A-C0D1-42BB-B592-876A0E3F1F9B}
 	EndGlobalSection
 EndGlobal

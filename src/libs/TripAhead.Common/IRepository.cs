@@ -1,6 +1,4 @@
-using TripAhead.Common;
-
-namespace TripAhead.Trips.Domain.Repositories;
+namespace TripAhead.Common;
 
 public interface IRepository<TEntity> where TEntity : Entity
 {

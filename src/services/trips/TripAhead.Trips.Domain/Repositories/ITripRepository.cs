@@ -1,3 +1,4 @@
+using TripAhead.Common;
 using TripAhead.Trips.Domain.Models;
 
 namespace TripAhead.Trips.Domain.Repositories;

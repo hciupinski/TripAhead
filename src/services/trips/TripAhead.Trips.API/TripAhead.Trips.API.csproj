@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\libs\TripAhead.Infrastructure.Common\TripAhead.Infrastructure.Common.csproj" />
       <ProjectReference Include="..\..\..\TripAhead.ServiceDefaults\TripAhead.ServiceDefaults.csproj" />
       <ProjectReference Include="..\TripAhead.Trips.Infrastructure\TripAhead.Trips.Infrastructure.csproj" />
     </ItemGroup>

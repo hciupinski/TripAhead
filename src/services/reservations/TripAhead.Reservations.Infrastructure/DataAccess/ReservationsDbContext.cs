@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TripAhead.Common;
 using TripAhead.Reservations.Domain.Models;
 using TripAhead.Reservations.Infrastructure.DataAccess.Converters;
+using TripAhead.Reservations.Infrastructure.DataAccess.EntityConfigurations;
 
 namespace TripAhead.Reservations.Infrastructure.DataAccess;
 
@@ -13,6 +14,10 @@ public class ReservationsDbContext(DbContextOptions<ReservationsDbContext> optio
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.HasDefaultSchema("reservations");
+
+        builder.ApplyConfiguration(new ReservationEntityConfiguration());
+        builder.ApplyConfiguration(new InvoiceEntityConfiguration());
+        builder.ApplyConfiguration(new LineItemEntityConfiguration());
     }
     
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

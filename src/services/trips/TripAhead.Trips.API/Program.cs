@@ -1,8 +1,9 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
+using TripAhead.Infrastructure.Common.Extensions;
 using TripAhead.Trips.API.Apis;
 using TripAhead.Trips.Infrastructure;
-using TripAhead.Trips.Infrastructure.Extensions;
+using TripAhead.Trips.Infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,6 @@ app.MapGroup("/api/v1/optional-items")
     .WithTags("Optional Item API")
     .MapOptionalItemApi();
 
-await app.Services.MigrateAsync();
+await app.Services.MigrateAsync<TripsDbContext>();
 
 app.Run();

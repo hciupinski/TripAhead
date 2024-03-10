@@ -21,7 +21,7 @@ public class TripEntityConfiguration : IEntityTypeConfiguration<Trip>
         builder.HasMany(t => t.Options)
             .WithOne(o => o.Trip)
             .HasPrincipalKey(t => t.Id)
-            .HasForeignKey(x => x.TripId)
+            .HasForeignKey(o => o.TripId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,3 +1,6 @@
+using TripAhead.Infrastructure.Common.Extensions;
+using TripAhead.Reservations.Infrastructure.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
@@ -14,5 +17,7 @@ app.UseExceptionHandler();
 app.MapGet("/", () => "Trips service!");
 
 app.MapDefaultEndpoints();
+
+await app.Services.MigrateAsync<ReservationsDbContext>();
 
 app.Run();

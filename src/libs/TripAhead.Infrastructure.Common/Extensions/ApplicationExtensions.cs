@@ -1,16 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TripAhead.Trips.Domain.Models;
-using TripAhead.Trips.Infrastructure.DataAccess;
 
-namespace TripAhead.Trips.Infrastructure.Extensions;
+namespace TripAhead.Infrastructure.Common.Extensions;
 
 public static class ApplicationExtensions
 {
-    public static async Task<IServiceProvider> MigrateAsync(this IServiceProvider services)
+    public static async Task<IServiceProvider> MigrateAsync<TDbContext>(this IServiceProvider services)
+    where TDbContext : DbContext
     {
         using var scope = services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<TripsDbContext>();
+        var dbContext = scope.ServiceProvider.GetRequiredService<TDbContext>();
 
         if ((await dbContext.Database.GetPendingMigrationsAsync()).Any())
         {
