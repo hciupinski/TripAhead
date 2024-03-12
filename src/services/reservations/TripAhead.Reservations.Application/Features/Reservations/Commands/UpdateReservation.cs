@@ -1,0 +1,28 @@
+using MediatR;
+using TripAhead.Reservations.Domain.Exceptions;
+using TripAhead.Reservations.Domain.Models;
+using TripAhead.Reservations.Domain.Repositories;
+
+namespace TripAhead.Reservations.Application.Features.Reservations.Commands;
+
+public class UpdateReservation
+{
+    public record Command(Guid TripId, Guid UserId, List<AdditionalOptionRequest> Options) : IRequest<Guid>;
+
+    public record AdditionalOptionRequest(Guid OptionId, string Name, decimal Price);
+
+    public class Handler(IReservationRepository reservationRepository) : IRequestHandler<Command, Guid>
+    {
+        public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var reservation = await reservationRepository.GetByIdentificationAsync(request.TripId, request.UserId, cancellationToken) ??
+                throw new ReservationExistsException(request.TripId, request.UserId);
+
+            reservation.SetAdditionalOptions(request.Options.Select(x => new AdditionalOption(x.OptionId, x.Name, x.Price)).ToList());
+
+            await reservationRepository.UpdateAsync(reservation, cancellationToken);
+
+            return reservation.Id;
+        }
+    }
+}

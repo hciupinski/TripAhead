@@ -13,6 +13,11 @@ public class ReservationRepository(ReservationsDbContext dbContext) : IReservati
     public async Task<bool> ExistsAsync(Guid tripId, Guid userId, CancellationToken cancellationToken)
         => await dbContext.Reservations.AnyAsync(x => x.TripId == tripId && x.UserId == userId, cancellationToken);
 
+    public async Task<Reservation?> GetByIdentificationAsync(Guid tripId, Guid userId, CancellationToken cancellationToken)
+        => await dbContext.Reservations
+            .Include(x => x.AdditionalOptions)
+            .FirstOrDefaultAsync(x => x.TripId == tripId && x.UserId == userId, cancellationToken);
+
     public async Task<Reservation?> FindAsync(Guid id, CancellationToken cancellationToken)
         => await dbContext.Reservations.FindAsync(id, cancellationToken);
     
