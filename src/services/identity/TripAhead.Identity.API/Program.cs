@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Identity;
+using TripAhead.Identity.Api.DataAccess;
+using TripAhead.Identity.Api.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
