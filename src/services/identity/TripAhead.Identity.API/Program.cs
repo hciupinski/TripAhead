@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using TripAhead.Identity.API;
 using TripAhead.Identity.Api.DataAccess;
 using TripAhead.Identity.Api.Models;
 
@@ -12,6 +13,8 @@ builder.AddNpgsqlDbContext<ApplicationDbContext>("identitydb");
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
+
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddProblemDetails();

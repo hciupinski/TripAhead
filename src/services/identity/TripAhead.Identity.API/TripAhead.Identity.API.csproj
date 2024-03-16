@@ -19,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\libs\TripAhead.Common\TripAhead.Common.csproj" />
       <ProjectReference Include="..\..\..\TripAhead.ServiceDefaults\TripAhead.ServiceDefaults.csproj" />
     </ItemGroup>
 

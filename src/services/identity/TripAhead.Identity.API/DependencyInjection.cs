@@ -1,12 +1,8 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TripAhead.Trips.Application.Features.Trips.Queries;
-using TripAhead.Trips.Domain.Repositories;
-using TripAhead.Trips.Infrastructure.DataAccess;
-using TripAhead.Trips.Infrastructure.Persistence;
 
-namespace TripAhead.Trips.Infrastructure;
+namespace TripAhead.Identity.API;
 
 public static class DependencyInjection
 {
@@ -22,19 +18,16 @@ public static class DependencyInjection
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssembly(typeof(GetTrips).Assembly));
+            cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
         return services;
     }
 
     private static IServiceCollection AddPersistance(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<TripsDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("TripContext")));
-
-        services.AddScoped<ITripRepository, TripRepository>();
-        services.AddScoped<IOptionalItemRepository, OptionalItemRepository>();
-
+        services.AddDbContext<IdentityDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("IdentityContext")));
+        
         return services;
     }
 }

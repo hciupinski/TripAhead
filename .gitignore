@@ -10,6 +10,10 @@
 # .env
 .env
 
+# In case of holiday prepare patch to be still in game
+.patches/
+*.patch
+
 # User-specific files
 *.rsuser
 *.suo

@@ -3,7 +3,7 @@ using TripAhead.Trips.Domain.Models;
 using TripAhead.Trips.Domain.Repositories;
 using TripAhead.Trips.Infrastructure.DataAccess;
 
-namespace TripAhead.Trips.Infrastructure.Persistance;
+namespace TripAhead.Trips.Infrastructure.Persistence;
 
 public class OptionalItemRepository(TripsDbContext dbContext) : IOptionalItemRepository
 {
