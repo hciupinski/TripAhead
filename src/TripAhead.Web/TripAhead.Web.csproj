@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\services\trips\TripAhead.Trips.Contracts\TripAhead.Trips.Contracts.csproj" />
         <ProjectReference Include="..\TripAhead.ServiceDefaults\TripAhead.ServiceDefaults.csproj"/>
     </ItemGroup>
 

@@ -1,11 +1,12 @@
-﻿@page "/weather"
+﻿@page "/management/trips/"
+@using TripAhead.Trips.Contracts.Models
 @using TripAhead.Web.Clients
 @attribute [StreamRendering(true)]
 @attribute [OutputCache(Duration = 5)]
 
 @inject TripsApiClient TripsApi
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>Trips - All trips</PageTitle>
 
 <h1>Weather</h1>
 
@@ -23,11 +24,11 @@ else
 }
 
 @code {
-    private string? _response;
+    private List<TripViewModel>? _response;
 
     protected override async Task OnInitializedAsync()
     {
-        _response = await TripsApi.GetAsync();
+        _response = await TripsApi.GetTripsAsync();
     }
 
 }
