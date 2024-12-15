@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using TripAhead.Libs.Common.Converters;
 using TripAhead.Services.Orders.Application.Interfaces;
 using TripAhead.Services.Orders.Domain.Entities;
 
@@ -12,6 +13,13 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<Order> Orders => Set<Order>();
 
     public DbSet<Invoice> Invoices => Set<Invoice>();
+    
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder
+            .Properties<DateTimeOffset>()
+            .HaveConversion<DateTimeOffsetConverter>();
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

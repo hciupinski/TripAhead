@@ -1,8 +1,11 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Databases
-
-var postgres = builder.AddPostgres("postgres").WithPgAdmin();
+var username = builder.AddParameter("username", secret: true);
+var password = builder.AddParameter("password", secret: true);
+var postgres = builder.AddPostgres("postgres", username, password)
+    .WithLifetime(ContainerLifetime.Persistent)
+    .WithPgAdmin();
 var database = postgres.AddDatabase("TripAheadDb");
 
 // Identity Providers
@@ -19,12 +22,14 @@ var realm = keycloak.AddRealm("Test");
 // API apps
 var tripsService =
     builder.AddProject<Projects.TripAhead_Services_Trips_API>("tripsservice")
-    .WithReference(keycloak)
-    .WithReference(realm)
-    .WithReference(database);
+        .WaitFor(database)
+        .WithReference(keycloak)
+        .WithReference(realm)
+        .WithReference(database);
 
-var orderssService =
+var ordersService =
     builder.AddProject<Projects.TripAhead_Services_Orders_API>("ordersservice")
+        .WaitFor(database)
         .WithReference(keycloak)
         .WithReference(realm)
         .WithReference(database);

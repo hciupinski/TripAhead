@@ -18,7 +18,9 @@ public class TripsService : global::TripsService.Trips.TripsBase
         Console.WriteLine($"Received new order notification: OrderId={request.OrderId}, TripId={request.TripId}");
 
         // Business logic to mark the new client on the trip
-        await _mediator.Publish(new TripOrderCreated(Guid.Parse(request.OrderId), Guid.Parse(request.TripId)));
+        Guid orderId = Guid.Parse(request.OrderId);
+        Guid tripId = Guid.Parse(request.TripId);
+        await _mediator.Publish(new TripOrderCreated(orderId, tripId));
         
         bool success = true;
         

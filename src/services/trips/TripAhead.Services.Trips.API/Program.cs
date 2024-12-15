@@ -2,6 +2,7 @@ using Keycloak.AuthServices.Authentication;
 using TripAhead.Services.Trips.API.Endpoints;
 using TripAhead.Services.Trips.Application;
 using TripAhead.Services.Trips.Infrastructure;
+using TripAhead.Services.Trips.Infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ var services = builder.Services;
 
 builder.Services.AddGrpc();
 
-services.AddKeycloakAuthentication(
+services.AddKeycloakWebApiAuthentication(
     builder.Configuration, 
     options =>
 {
@@ -56,5 +57,7 @@ app.MapGroup("/api/v1/trips")
 app.MapGroup("/api/v1/optional-items")
     .WithTags("OptionalItems API v1")
     .MapOptionalItemsEndpoints();
+
+await app.InitialiseDatabaseAsync();
 
 app.Run();

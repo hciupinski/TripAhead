@@ -2,6 +2,7 @@ using Keycloak.AuthServices.Authentication;
 using TripAhead.Services.Orders.API.Endpoints;
 using TripAhead.Services.Orders.Application;
 using TripAhead.Services.Orders.Infrastructure;
+using TripAhead.Services.Orders.Infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddOpenApi();
 
 var services = builder.Services;
 
-services.AddKeycloakAuthentication(
+services.AddKeycloakWebApiAuthentication(
     builder.Configuration, 
     options =>
     {
@@ -46,5 +47,7 @@ app.UseAuthorization();
 app.MapGroup("/api/v1/orders")
     .WithTags("Orders API v1")
     .MapOrdersEndpoints();
+
+await app.InitialiseDatabaseAsync();
 
 app.Run();

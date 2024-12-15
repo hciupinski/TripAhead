@@ -1,6 +1,19 @@
-@TripAhead.Services.Orders.API_HostAddress = http://localhost:5118
+@OrdersAPI_HostAddress = https://localhost:6002/api/v1/
 
-GET {{TripAhead.Services.Orders.API_HostAddress}}/weatherforecast/
-Accept: application/json
+### Create Order
+
+PUT {{OrdersAPI_HostAddress}}/orders/create
+Content-Type: application/json
+
+{
+  "tripId": "0193cc33-9c31-7dc3-bcec-4c2e0ca31b14",
+  "options": [
+    {
+      "name": "Equipment",
+      "optionalItemId": "0193cc33-9ded-7286-b4e7-18f8c1637416",
+      "price": 100
+    }
+  ]
+}
 
 ###

@@ -20,11 +20,12 @@ public class CreateOrder
                 Options = request.Options
             };
             
-            
+            context.Orders.Add(order);
+            await context.SaveChangesAsync(cancellationToken);
             
             await tripsServiceClient.NotifyNewOrderAsync(order.Id, order.TripId);
             
-            throw new NotImplementedException();
+            return order.Id;
         }
     }
 }

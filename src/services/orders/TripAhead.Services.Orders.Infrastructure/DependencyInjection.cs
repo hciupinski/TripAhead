@@ -22,7 +22,7 @@ public static class DependencyInjection
         
         builder.Services.AddGrpcClient<Trips.TripsClient>(options =>
         {
-            options.Address = new Uri("https://trips");
+            options.Address = new Uri("https://localhost:6001");
         });
         builder.Services.AddScoped<ITripsServiceClient, TripsServiceClient>();
         

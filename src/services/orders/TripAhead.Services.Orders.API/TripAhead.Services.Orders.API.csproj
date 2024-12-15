@@ -12,6 +12,10 @@
         <PackageReference Include="Keycloak.AuthServices.Authentication" Version="2.6.0" />
         <PackageReference Include="Keycloak.AuthServices.Common" Version="2.6.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.1.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
