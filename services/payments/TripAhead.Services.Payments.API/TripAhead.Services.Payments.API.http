@@ -1,0 +1,6 @@
+@TripAhead.Services.Payments.API_HostAddress = http://localhost:5021
+
+GET {{TripAhead.Services.Payments.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

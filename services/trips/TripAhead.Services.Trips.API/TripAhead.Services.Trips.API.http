@@ -1,0 +1,6 @@
+@TripAhead.Services.Trips.API_HostAddress = http://localhost:5172
+
+GET {{TripAhead.Services.Trips.API_HostAddress}}/trips/
+Accept: application/json
+
+###
