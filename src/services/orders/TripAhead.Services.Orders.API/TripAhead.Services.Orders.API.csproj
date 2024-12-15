@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
+        <PackageReference Include="Keycloak.AuthServices.Authentication" Version="2.6.0" />
+        <PackageReference Include="Keycloak.AuthServices.Common" Version="2.6.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\TripAhead.ServiceDefaults\TripAhead.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\TripAhead.Services.Orders.Infrastructure\TripAhead.Services.Orders.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
