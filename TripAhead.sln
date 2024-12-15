@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripAhead.Services.Orders.A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contracts", "contracts", "{20F9F7CE-71D9-4BD2-A7DC-B1AACA460017}"
 	ProjectSection(SolutionItems) = preProject
-		contracts\trips.proto = contracts\trips.proto
+		src\contracts\trips.proto = src\contracts\trips.proto
 	EndProjectSection
 EndProject
 Global
