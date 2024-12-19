@@ -18,8 +18,6 @@ public static class TripsEndpoints
         app.MapGet("/", GetAllTrips);
         app.MapGet("/{id:guid}", GetTrip);
 
-        app.MapPost("/{id:guid}/order", CreateOrder).RequireAuthorization();
-
         var manageGroup = app.MapGroup("manage").RequireAuthorization(a => a.RequireRole("Admin"));
         manageGroup.MapPut("/create", CreateTrip);
         manageGroup.MapPost("/{id:guid}", UpdateTrip);
@@ -84,12 +82,6 @@ public static class TripsEndpoints
         Guid optionalItemId)
     {
         await mediator.Send(new AssignOptionalItem.Command(id, optionalItemId));
-        return TypedResults.Ok();
-    }
-
-    public static async Task<Ok> CreateOrder(
-        [FromServices] IMediator mediator)
-    {
         return TypedResults.Ok();
     }
 }

@@ -1,6 +1,28 @@
-@TripAhead.Services.Trips.API_HostAddress = http://localhost:5172
+@TripsAPI_HostAddress = https://localhost:6001/api/v1
 
-GET {{TripAhead.Services.Trips.API_HostAddress}}/trips/
+### Get All Trips
+
+GET {{TripsAPI_HostAddress}}/trips/
 Accept: application/json
 
-###
+### Get Trip details
+
+@trip_id = 0193cc33-9c31-7dc3-bcec-4c2e0ca31b14
+
+GET {{TripsAPI_HostAddress}}/trips/{{trip_id}}
+Accept: application/json
+
+### Create Trip
+
+PUT {{TripsAPI_HostAddress}}/trips/manage/create
+Content-Type: application/json
+
+{
+  "name": "Trip name",
+  "description": "Trip description",
+  "location": "Poland, Białka",
+  "startDate": "2024-12-15T22:15:27.522Z",
+  "endDate": "2024-12-15T22:15:27.522Z",
+  "maxOccupancy": 10,
+  "price": 2400
+}

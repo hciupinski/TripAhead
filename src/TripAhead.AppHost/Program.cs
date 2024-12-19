@@ -9,14 +9,10 @@ var postgres = builder.AddPostgres("postgres", username, password)
 var database = postgres.AddDatabase("TripAheadDb");
 
 // Identity Providers
-
 var keycloak = builder
-    .AddKeycloakContainer("keycloak")
-    .WithDataVolume()
-    .WithImport("./KeycloakConfiguration/Test-realm.json")
-    .WithImport("./KeycloakConfiguration/Test-users-0.json");
+    .AddKeycloakContainer("keycloak");
 
-var realm = keycloak.AddRealm("Test");
+var realm = keycloak.AddRealm("tripahead");
 
 
 // API apps
@@ -33,5 +29,15 @@ var ordersService =
         .WithReference(keycloak)
         .WithReference(realm)
         .WithReference(database);
+
+// NodeJs app
+var web = builder.AddNpmApp("angular", "../web/TripAhead")
+    .WithReference(tripsService)
+    .WaitFor(tripsService)
+    .WithReference(ordersService)
+    .WaitFor(ordersService)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints()
+    .PublishAsDockerFile();
 
 builder.Build().Run();
