@@ -4,18 +4,21 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import {provideHttpClient} from "@angular/common/http";
-import {initKeycloak} from "../core/init-keycloak";
-import {KeycloakService} from "keycloak-angular";
+import {initKeycloak} from "./core/init-keycloak";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
+    { provide: KeycloakAngularModule, useValue: KeycloakAngularModule },
     {
       provide: APP_INITIALIZER,
-      useFactory: initKeycloak,
-      multi: true,
-      deps: [KeycloakService]
+      useFactory: (keycloak: KeycloakService, store: Store) => () => {
+        store.dispatch(authInit());
+      },
+      deps: [KeycloakService, Store],
+      multi: true
     }
   ]
 };
