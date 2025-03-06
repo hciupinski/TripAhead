@@ -8,8 +8,8 @@ export function initializeKeycloak (keycloak: KeycloakService) {
             // Configuration details for Keycloak
             config: {
                 url: 'http://localhost:8080', // URL of the Keycloak server
-                realm: 'trip-ahead', // Realm to be used in Keycloak
-                clientId: 'workspaces-client' // Client ID for the application in Keycloak
+                realm: 'tripahead', // Realm to be used in Keycloak
+                clientId: 'angular-client' // Client ID for the application in Keycloak
             },
             loadUserProfileAtStartUp: true,
             initOptions: {
