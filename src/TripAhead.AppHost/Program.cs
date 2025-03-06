@@ -10,10 +10,12 @@ var database = postgres.AddDatabase("TripAheadDb");
 
 // Identity Providers
 var keycloak = builder
-    .AddKeycloakContainer("keycloak");
+    .AddKeycloakContainer("keycloak")
+    .WithLifetime(ContainerLifetime.Persistent)
+    .WithDataVolume()
+    .WithImport("./KeycloakConfiguration/realm-export.json");
 
 var realm = keycloak.AddRealm("tripahead");
-
 
 // API apps
 var tripsService =
@@ -36,7 +38,9 @@ var web = builder.AddNpmApp("angular", "../web/TripAhead")
     .WaitFor(tripsService)
     .WithReference(ordersService)
     .WaitFor(ordersService)
-    .WithHttpEndpoint(env: "PORT")
+    .WithReference(keycloak)
+    .WaitFor(keycloak)
+    .WithHttpEndpoint(port: 4200, env: "PORT")
     .WithExternalHttpEndpoints()
     .PublishAsDockerFile();
 

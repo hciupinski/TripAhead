@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using TripAhead.Services.Trips.Application.Features.Trips.Commands.AssignOptionalItem;
@@ -15,10 +16,11 @@ public static class TripsEndpoints
 {
     public static IEndpointRouteBuilder MapTripsEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/", GetAllTrips);
+        // app.MapGet("/", GetAllTrips);
         app.MapGet("/{id:guid}", GetTrip);
 
-        var manageGroup = app.MapGroup("manage").RequireAuthorization(a => a.RequireRole("Admin"));
+        var manageGroup = app.MapGroup("manage").RequireAuthorization("admin");
+        manageGroup.MapGet("/", GetAllTrips);
         manageGroup.MapPut("/create", CreateTrip);
         manageGroup.MapPost("/{id:guid}", UpdateTrip);
         manageGroup.MapDelete("/{id:guid}", RemoveTrip);

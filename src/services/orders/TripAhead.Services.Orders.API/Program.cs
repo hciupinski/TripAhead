@@ -15,15 +15,14 @@ builder.Services.AddOpenApi();
 
 var services = builder.Services;
 
-services.AddKeycloakWebApiAuthentication(
-    builder.Configuration, 
-    options =>
-    {
-        options.Audience = "workspaces-client";
-        options.RequireHttpsMetadata = false;
-    });
+services.AddKeycloakWebApiAuthentication(builder.Configuration, options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.Audience = "workspaces-client";
+});
 
 services.AddAuthorization();
+
 builder.AddApplicationServices();
 builder.AddInfrastructureServices();
 

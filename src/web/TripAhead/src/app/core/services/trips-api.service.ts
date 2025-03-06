@@ -11,7 +11,7 @@ export class TripsApiService {
   constructor(private http: HttpClient) {}
 
   getTrips(): Observable<Trips> {
-    return this.http.get<Trips>(this.apiUrl + '/trips').pipe(
+    return this.http.get<Trips>(this.apiUrl + '/trips/manage').pipe(
       catchError((error) => {
         console.error('Error fetching trips', error);
         return of(error);

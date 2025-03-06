@@ -1,1 +1,26 @@
-<p>trips-list works!</p>
+<div class="container mx-auto w-full">
+  <div *ngIf="loading$ | async" class="loading-indicator">
+    Loading ...
+  </div>
+
+  <div *ngIf="error$ | async as error" class="error-message">
+    Error : {{ JSON.stringify(error.error) }}
+  </div>
+
+  <h1>Trips</h1>
+  <table *ngIf="trips$ | async as trips">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let trip of trips; index as i;">
+      <td>{{trip.id}}</td>
+      <td>{{trip.name}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

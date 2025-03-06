@@ -1,10 +1,15 @@
 using Keycloak.AuthServices.Authentication;
+using Keycloak.AuthServices.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Logging;
 using TripAhead.Services.Trips.API.Endpoints;
 using TripAhead.Services.Trips.Application;
 using TripAhead.Services.Trips.Infrastructure;
 using TripAhead.Services.Trips.Infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpLogging(o => { });
 
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
@@ -18,22 +23,28 @@ var services = builder.Services;
 
 builder.Services.AddGrpc();
 
-services.AddKeycloakWebApiAuthentication(
-    builder.Configuration, 
-    options =>
+services.AddKeycloakWebApiAuthentication(builder.Configuration, options =>
 {
-    options.Audience = "workspaces-client";
     options.RequireHttpsMetadata = false;
+    options.Audience = "workspaces-client";
 });
 
-
 services.AddAuthorization();
+
+builder.Services
+    .AddCors(options =>
+    {
+        options.AddPolicy("AllowOrigin",
+            builder => builder.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+    });
 
 builder.AddApplicationServices();
 builder.AddInfrastructureServices();
 
 var app = builder.Build();
-
+app.UseHttpLogging();
 app.MapGrpcService<TripAhead.Services.Trips.API.Services.TripsService>();
 
 // Configure the HTTP request pipeline.
@@ -44,13 +55,11 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
     });
+    IdentityModelEventSource.ShowPII = true;
 }
 
 app.UseHttpsRedirection();
-app.UseCors(static builder => 
-    builder.AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowAnyOrigin());
+app.UseCors("AllowOrigin");
 
 app.UseAuthentication();
 app.UseAuthorization();
