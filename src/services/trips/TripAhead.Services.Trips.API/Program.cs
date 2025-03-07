@@ -1,6 +1,8 @@
 using Keycloak.AuthServices.Authentication;
 using Keycloak.AuthServices.Authorization;
+using Keycloak.AuthServices.Authorization.Requirements;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
 using TripAhead.Services.Trips.API.Endpoints;
 using TripAhead.Services.Trips.Application;
@@ -26,10 +28,17 @@ builder.Services.AddGrpc();
 services.AddKeycloakWebApiAuthentication(builder.Configuration, options =>
 {
     options.RequireHttpsMetadata = false;
-    options.Audience = "workspaces-client";
+    options.Audience = "dotnet-api";
 });
 
-services.AddAuthorization();
+services
+    .AddAuthorization()
+    .AddKeycloakAuthorization()
+    .AddAuthorizationBuilder()
+    .AddPolicy(
+        "admin-policy",
+        policy => policy.RequireRealmRoles("admin")
+    );
 
 builder.Services
     .AddCors(options =>
@@ -75,3 +84,25 @@ app.MapGroup("/api/v1/optional-items")
 await app.InitialiseDatabaseAsync();
 
 app.Run();
+
+public class CustomAuthorizationHandler : AuthorizationHandler<RealmAccessRequirement>
+{
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context, 
+        RealmAccessRequirement requirement)
+    {
+        Console.WriteLine($"Authorization attempted for {context.User.Identity?.Name}");
+
+        if (context.User.IsInRole("Admin"))
+        {
+            Console.WriteLine("User authorized as Admin");
+            context.Succeed(requirement);
+        }
+        else
+        {
+            Console.WriteLine("User NOT authorized");
+        }
+
+        return Task.CompletedTask;
+    }
+}

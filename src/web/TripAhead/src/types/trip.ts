@@ -3,6 +3,6 @@ export interface Trip {
   name: string;
 }
 
-export type Trips = {
+export type TripsResponse = {
   trips: Trip[];
 }

@@ -11,8 +11,8 @@ export class TripsEffect {
       ofType(loadTrips),
       mergeMap((action) =>
         this.tripsApiService.getTrips().pipe(
-          map((trips) =>
-            loadTripsSuccess({ trips: trips })
+          map((response) =>
+            loadTripsSuccess({ trips: response.trips })
           ),
           catchError((error) => of(loadTripsFailure({error})))
         )

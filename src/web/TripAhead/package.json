@@ -6,10 +6,10 @@
   },
   "scripts": {
     "ng": "ng",
-    "serve": "ng serve",
+    "serve": "ng serve --proxy-config proxy.conf.js",
     "start": "run-script-os",
-    "start:win32": "ng serve --port %PORT%",
-    "start:default": "ng serve --port $PORT",
+    "start:win32": "ng serve --port %PORT% --proxy-config proxy.conf.js",
+    "start:default": "ng serve --port $PORT --proxy-config proxy.conf.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

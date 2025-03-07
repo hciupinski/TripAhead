@@ -23,7 +23,7 @@ export const tripsReducer = createReducer(
   })),
   on(loadTripsSuccess, (state, { trips }) => ({
     ...state,
-    trips: trips.trips,
+    trips,
     loading: false,
   })),
   on(loadTripsFailure, (state, { error }) => ({

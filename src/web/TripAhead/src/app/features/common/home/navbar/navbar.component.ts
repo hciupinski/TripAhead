@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, inject, OnInit} from '@angular/core';
 import {MenubarModule} from "primeng/menubar";
 import {Router, RouterModule} from "@angular/router";
 import {MenuItem} from "primeng/api";
 import {CommonModule} from "@angular/common";
+import Keycloak from "keycloak-js";
+import {KEYCLOAK_EVENT_SIGNAL, KeycloakEventType, ReadyArgs, typeEventArgs} from "keycloak-angular";
 
 @Component({
     selector: 'app-navbar',
@@ -12,45 +14,41 @@ import {CommonModule} from "@angular/common";
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
+  authenticated = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private readonly keycloak: Keycloak) {
+    const keycloakSignal = inject(KEYCLOAK_EVENT_SIGNAL);
+
+    effect(() => {
+      const keycloakEvent = keycloakSignal();
+
+      if (keycloakEvent.type === KeycloakEventType.Ready) {
+        this.authenticated = typeEventArgs<ReadyArgs>(keycloakEvent.args);
+      }
+
+      if (keycloakEvent.type === KeycloakEventType.AuthLogout) {
+        this.authenticated = false;
+      }
+    });
   }
     ngOnInit(): void {
       this.items = [
         {
-          label: 'Router',
+          label: 'Admin panel',
           icon: 'pi pi-palette',
-          items: [
-            {
-              label: 'Installation',
-              route: '/installation'
-            },
-            {
-              label: 'Configuration',
-              route: '/configuration'
-            }
-          ]
-        },
-        {
-          label: 'Programmatic',
-          icon: 'pi pi-link',
           command: () => {
-            this.router.navigate(['/installation']);
+            this.router.navigate(['/admin']);
           }
         },
         {
-          label: 'External',
+          label: 'Login',
+          icon: 'pi pi-link',
+          visible: !this.authenticated
+        },
+        {
+          label: 'Logout',
           icon: 'pi pi-home',
-          items: [
-            {
-              label: 'Angular',
-              url: 'https://angular.io/'
-            },
-            {
-              label: 'Vite.js',
-              url: 'https://vitejs.dev/'
-            }
-          ]
+          visible: this.authenticated
         }
       ];
     }

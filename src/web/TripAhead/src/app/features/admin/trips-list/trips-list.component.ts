@@ -29,6 +29,4 @@ export class TripsListComponent implements OnInit  {
     this.loading$ = this.store.select(selectTripsLoading);
     this.error$ = this.store.select(selectTripsError);
   }
-
-  protected readonly JSON = JSON;
 }

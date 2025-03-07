@@ -19,7 +19,7 @@ public static class TripsEndpoints
         // app.MapGet("/", GetAllTrips);
         app.MapGet("/{id:guid}", GetTrip);
 
-        var manageGroup = app.MapGroup("manage").RequireAuthorization("admin");
+        var manageGroup = app.MapGroup("manage").RequireAuthorization("admin-policy");
         manageGroup.MapGet("/", GetAllTrips);
         manageGroup.MapPut("/create", CreateTrip);
         manageGroup.MapPost("/{id:guid}", UpdateTrip);

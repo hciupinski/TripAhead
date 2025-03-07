@@ -6,7 +6,11 @@ import {
 } from 'keycloak-angular';
 
 // Provider for Keycloak Bearer Interceptor
-const urlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
+const tripServiceCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
+  urlPattern: /^(\/trips.api)(\/.*)?$/i,
+  bearerPrefix: 'Bearer'
+});
+const orderServiceCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
   urlPattern: /^(http:\/\/localhost:8181)(\/.*)?$/i,
   bearerPrefix: 'Bearer'
 });
@@ -37,7 +41,7 @@ export const keycloakOptions: ProvideKeycloakOptions = {
     UserActivityService,
     {
       provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
-      useValue: [urlCondition]
+      useValue: [tripServiceCondition],
     }
   ]
 };

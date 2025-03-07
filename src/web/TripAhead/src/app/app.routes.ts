@@ -1,6 +1,5 @@
 import {Routes} from '@angular/router';
 import {HomeComponent} from "./features/common/home/home.component";
-import {AuthGuard} from "./core/guards/auth.guard";
 import {LayoutComponent as AdminLayoutComponent} from "./features/admin/layout/layout.component";
 import {LayoutComponent as UserLayoutComponent} from "./features/user/layout/layout.component";
 import {TripDetailsComponent as UserTripDetailsComponent} from "./features/user/trip-details/trip-details.component";
@@ -11,6 +10,7 @@ import {DetailsComponent} from "./features/admin/trip-details/sections/details/d
 import {FeaturesComponent} from "./features/admin/trip-details/sections/features/features.component";
 import {RoomsComponent} from "./features/admin/trip-details/sections/rooms/rooms.component";
 import {NotFoundComponent} from "./features/common/not-found/not-found.component";
+import {canActivateAuthRole} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
   {
@@ -20,7 +20,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [canActivateAuthRole],
     data: { roles: ['admin'] },
     children: [
       {
@@ -48,14 +48,19 @@ export const routes: Routes = [
             component: RoomsComponent,
           }
         ]
+      },
+      {
+        path: '',
+        redirectTo: 'trips',
+        pathMatch: 'full'
       }
     ]
   },
   {
     path: 'trips',
     component: UserLayoutComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['client'] },
+    // canActivate: [canActivateAuthRole],
+    // data: { roles: ['client'] },
     children: [
       {
         path: '{tripId}',
