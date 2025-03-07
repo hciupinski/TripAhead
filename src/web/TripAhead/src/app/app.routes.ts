@@ -10,6 +10,7 @@ import {ClientsComponent} from "./features/admin/trip-details/sections/clients/c
 import {DetailsComponent} from "./features/admin/trip-details/sections/details/details.component";
 import {FeaturesComponent} from "./features/admin/trip-details/sections/features/features.component";
 import {RoomsComponent} from "./features/admin/trip-details/sections/rooms/rooms.component";
+import {NotFoundComponent} from "./features/common/not-found/not-found.component";
 
 export const routes: Routes = [
   {
@@ -57,14 +58,15 @@ export const routes: Routes = [
     data: { roles: ['client'] },
     children: [
       {
-        path: '/{tripId}',
+        path: '{tripId}',
         component: UserTripDetailsComponent,
       }
     ]
   },
   {
     path: '',
-    redirectTo: 'offers',
+    redirectTo: '/offers',
     pathMatch: 'full'
   },
+  { path: '**', component: NotFoundComponent }
 ];

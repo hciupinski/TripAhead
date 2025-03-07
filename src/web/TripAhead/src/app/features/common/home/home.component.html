@@ -1,21 +1,8 @@
+<app-navbar />
+
 <p>home works!</p>
 
-<div>
-  <h2>User profile</h2>
-  <div *ngIf="user$ | async as user">
-    <p>id: {{user.id}}</p>
-    <p>name: {{user.firstName}} {{user.lastName}}</p>
-    <p>email: {{user.email}}</p>
-  </div>
-  <p></p>
-</div>
-
-<div>
-  <button (click)="navigateNotSecured()">Not Secured</button>
-  <button (click)="navigateSecured()">Secured</button>
-</div>
-
-<div>
-  <button (click)="login()">login</button>
-  <button (click)="logout()">logout</button>
-</div>
+<!--<div>-->
+<!--  <button (click)="login()">login</button>-->
+<!--  <button (click)="logout()">logout</button>-->
+<!--</div>-->
