@@ -1,45 +1,43 @@
-import {KeycloakBearerInterceptor, KeycloakService} from 'keycloak-angular';
-import {APP_INITIALIZER, Provider} from "@angular/core";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-
-export function initializeKeycloak (keycloak: KeycloakService) {
-    return () =>
-        keycloak.init({
-            // Configuration details for Keycloak
-            config: {
-                url: 'http://localhost:8080', // URL of the Keycloak server
-                realm: 'tripahead', // Realm to be used in Keycloak
-                clientId: 'angular-client' // Client ID for the application in Keycloak
-            },
-            loadUserProfileAtStartUp: true,
-            initOptions: {
-                onLoad: 'check-sso',
-                silentCheckSsoRedirectUri:
-                    window.location.origin + '/assets/silent-check-sso.html',
-                checkLoginIframe: false,
-                flow: 'standard',
-                redirectUri: 'http://localhost:4200',
-            },
-            // Enables Bearer interceptor
-            enableBearerInterceptor: true,
-            // Prefix for the Bearer token
-            bearerPrefix: 'Bearer',
-            // URLs excluded from Bearer token addition (empty by default)
-            bearerExcludedUrls: ['home']
-        });
-}
+import {
+  createInterceptorCondition,
+  IncludeBearerTokenCondition,
+  ProvideKeycloakOptions,
+  INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG, withAutoRefreshToken, AutoRefreshTokenService, UserActivityService
+} from 'keycloak-angular';
 
 // Provider for Keycloak Bearer Interceptor
-export const KeycloakBearerInterceptorProvider: Provider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: KeycloakBearerInterceptor,
-    multi: true
-};
+const urlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
+  urlPattern: /^(http:\/\/localhost:8181)(\/.*)?$/i,
+  bearerPrefix: 'Bearer'
+});
 
 // Provider for Keycloak Initialization
-export const KeycloakInitializerProvider: Provider = {
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService]
-}
+export const keycloakOptions: ProvideKeycloakOptions = {
+  config: {
+    url: 'http://localhost:8080', // URL of the Keycloak server
+    realm: 'tripahead', // Realm to be used in Keycloak
+    clientId: 'angular-client' // Client ID for the application in Keycloak
+  },
+  initOptions: {
+    onLoad: 'check-sso',
+    silentCheckSsoRedirectUri:
+      window.location.origin + '/assets/silent-check-sso.html',
+    checkLoginIframe: false,
+    flow: 'standard',
+    redirectUri: 'http://localhost:4200',
+  },
+  features: [
+    withAutoRefreshToken({
+      onInactivityTimeout: 'logout',
+      sessionTimeout: 60000
+    })
+  ],
+  providers: [
+    AutoRefreshTokenService,
+    UserActivityService,
+    {
+      provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
+      useValue: [urlCondition]
+    }
+  ]
+};

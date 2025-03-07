@@ -4,16 +4,14 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as AuthActions from './auth.actions';
 
 import { catchError, from, map, mergeMap, of, switchMap, timer } from 'rxjs';
-import {KeycloakService} from "keycloak-angular";
-import {loadTrips, loadTripsFailure, loadTripsSuccess} from "../trips/trips.actions";
-import {loadUser, loadUserFailure, loadUserSuccess} from "./auth.actions";
-import {KeycloakProfile} from "keycloak-js/lib/keycloak";
+import {loadUser} from "./auth.actions";
+import Keycloak, {KeycloakProfile} from 'keycloak-js';
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private actions$: Actions,
-    private keycloakService: KeycloakService,
+    private keycloakService: Keycloak,
   ) {}
 
   initAuth$ = createEffect(() =>
@@ -23,9 +21,7 @@ export class AuthEffects {
         from(this.keycloakService.init()).pipe(
           map(authenticated => {
             if (authenticated) {
-              this.keycloakService.getToken().then(token => {
-                return AuthActions.initAuthSuccess({ token });
-              })
+                return AuthActions.initAuthSuccess({ token : this.keycloakService.token! });
             }
 
             return AuthActions.initAuthFailure();
@@ -56,9 +52,7 @@ export class AuthEffects {
         from(this.keycloakService.updateToken()).pipe(
           map(success => {
             if (success) {
-              this.keycloakService.getToken().then(token => {
-                return AuthActions.refreshTokenSuccess({ token });
-              })
+                return AuthActions.refreshTokenSuccess({ token : this.keycloakService.refreshToken! });
             }
             return AuthActions.refreshTokenFailure();
           }),
@@ -73,7 +67,7 @@ export class AuthEffects {
     timer(30000, 30000).pipe(
       switchMap(() => {
         // Attempt refresh if authenticated
-        if (this.keycloakService.isLoggedIn()) {
+        if (this.keycloakService.authenticated) {
           return of(AuthActions.refreshToken());
         }
         return of();
