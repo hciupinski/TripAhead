@@ -10,11 +10,10 @@ import {User} from "../../../../types/user";
 import {NavbarComponent} from "./navbar/navbar.component";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, NavbarComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    imports: [CommonModule, NavbarComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   user$: Observable<User | null> | undefined;

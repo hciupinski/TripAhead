@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {MenubarModule} from "primeng/menubar";
-import {Router} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {MenuItem} from "primeng/api";
 import {CommonModule} from "@angular/common";
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [MenubarModule, CommonModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+    selector: 'app-navbar',
+    imports: [MenubarModule, CommonModule, RouterModule],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;

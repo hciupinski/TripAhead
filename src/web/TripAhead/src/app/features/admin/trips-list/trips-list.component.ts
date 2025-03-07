@@ -8,11 +8,10 @@ import {CommonModule} from "@angular/common";
 import {loadTrips} from "../../../core/store/trips/trips.actions";
 
 @Component({
-  selector: 'app-trips-list',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './trips-list.component.html',
-  styleUrl: './trips-list.component.scss'
+    selector: 'app-trips-list',
+    imports: [CommonModule],
+    templateUrl: './trips-list.component.html',
+    styleUrl: './trips-list.component.scss'
 })
 export class TripsListComponent implements OnInit  {
   trips$: Observable<Trip[]> | undefined;
