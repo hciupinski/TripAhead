@@ -1,0 +1,32 @@
+<p-card styleClass="countdown-card">
+  <ng-template pTemplate="header">
+    <div class="card-header">
+      <h3>Next Trip Countdown</h3>
+    </div>
+  </ng-template>
+  
+  <div class="trip-info">
+    <h4>{{ nextTrip.name }}</h4>
+    <p>Destination: {{ nextTrip.destination }}</p>
+    <p>Starting on: {{ nextTrip.startDate | date:'longDate' }}</p>
+  </div>
+  
+  <div class="countdown-timer">
+    <div class="countdown-block">
+      <div class="countdown-value">{{ daysLeft }}</div>
+      <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-block">
+      <div class="countdown-value">{{ hoursLeft }}</div>
+      <div class="countdown-label">Hours</div>
+    </div>
+    <div class="countdown-block">
+      <div class="countdown-value">{{ minutesLeft }}</div>
+      <div class="countdown-label">Minutes</div>
+    </div>
+    <div class="countdown-block">
+      <div class="countdown-value">{{ secondsLeft }}</div>
+      <div class="countdown-label">Seconds</div>
+    </div>
+  </div>
+</p-card>

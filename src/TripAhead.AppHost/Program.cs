@@ -11,8 +11,8 @@ var database = postgres.AddDatabase("TripAheadDb");
 // Identity Providers
 var keycloak = builder
     .AddKeycloakContainer("keycloak")
-    .WithLifetime(ContainerLifetime.Persistent);
-    // .WithDataVolume()
+    .WithLifetime(ContainerLifetime.Persistent)
+    .WithDataVolume();
     // .WithImport("./KeycloakConfiguration/realm-export.json");
 
 var realm = keycloak.AddRealm("tripahead");

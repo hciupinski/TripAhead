@@ -1,12 +1,13 @@
-<app-navbar />
-<div class="container">
-  <div class="grid-cols-2">
-    <div>
-      <app-sidebar />
-    </div>
-    <div>
+<div class="flex h-screen">
+  <!-- Sidebar (hidden on small screens) -->
+  <nav class="w-64 bg-gray-800 text-white hidden md:block">
+    <app-sidebar></app-sidebar>
+  </nav>
+
+  <!-- Main content -->
+  <main class="flex-1 p-6 overflow-y-auto">
+    <div class="container">
       <router-outlet></router-outlet>
     </div>
-  </div>
+  </main>
 </div>
-

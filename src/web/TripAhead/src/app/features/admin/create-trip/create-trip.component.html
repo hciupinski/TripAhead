@@ -1,0 +1,144 @@
+<div class="container mx-auto p-4">
+  <p-toast></p-toast>
+
+  <p-card styleClass="my-4">
+    <ng-template pTemplate="title">
+      <div class="text-2xl font-bold mb-4">Create New Trip</div>
+    </ng-template>
+
+    <form [formGroup]="tripForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Name -->
+        <div class="flex flex-col">
+          <label for="name" class="mb-2 font-medium">Trip Name</label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+            class="w-full"
+            [ngClass]="{'ng-invalid ng-dirty': tripForm.get('name')?.invalid && tripForm.get('name')?.touched}"
+          />
+          <small *ngIf="tripForm.get('name')?.invalid && tripForm.get('name')?.touched" class="text-red-500">
+            Trip name is required
+          </small>
+        </div>
+
+        <!-- Destination -->
+        <div class="flex flex-col">
+          <label for="destination" class="mb-2 font-medium">Destination</label>
+          <input
+            id="destination"
+            type="text"
+            pInputText
+            formControlName="destination"
+            class="w-full"
+            [ngClass]="{'ng-invalid ng-dirty': tripForm.get('destination')?.invalid && tripForm.get('destination')?.touched}"
+          />
+          <small *ngIf="tripForm.get('destination')?.invalid && tripForm.get('destination')?.touched" class="text-red-500">
+            Destination is required
+          </small>
+        </div>
+
+        <!-- Start Date -->
+        <div class="flex flex-col">
+          <label for="startDate" class="mb-2 font-medium">Start Date</label>
+          <p-calendar
+            id="startDate"
+            formControlName="startDate"
+            [showIcon]="true"
+            [showButtonBar]="true"
+            [ngClass]="{'ng-invalid ng-dirty': tripForm.get('startDate')?.invalid && tripForm.get('startDate')?.touched}"
+            styleClass="w-full"
+          ></p-calendar>
+          <small *ngIf="tripForm.get('startDate')?.invalid && tripForm.get('startDate')?.touched" class="text-red-500">
+            Start date is required
+          </small>
+        </div>
+
+        <!-- End Date -->
+        <div class="flex flex-col">
+          <label for="endDate" class="mb-2 font-medium">End Date</label>
+          <p-calendar
+            id="endDate"
+            formControlName="endDate"
+            [showIcon]="true"
+            [showButtonBar]="true"
+            [ngClass]="{'ng-invalid ng-dirty': tripForm.get('endDate')?.invalid && tripForm.get('endDate')?.touched}"
+            styleClass="w-full"
+          ></p-calendar>
+          <small *ngIf="tripForm.get('endDate')?.invalid && tripForm.get('endDate')?.touched" class="text-red-500">
+            End date is required
+          </small>
+        </div>
+
+        <!-- Max Capacity -->
+        <div class="flex flex-col">
+          <label for="maxCapacity" class="mb-2 font-medium">Maximum Capacity</label>
+          <p-inputNumber
+            id="maxCapacity"
+            formControlName="maxCapacity"
+            [showButtons]="true"
+            [min]="1"
+            styleClass="w-full"
+            [ngClass]="{'ng-invalid ng-dirty': tripForm.get('maxCapacity')?.invalid && tripForm.get('maxCapacity')?.touched}"
+          ></p-inputNumber>
+          <small *ngIf="tripForm.get('maxCapacity')?.invalid && tripForm.get('maxCapacity')?.touched" class="text-red-500">
+            Maximum capacity is required and must be at least 1
+          </small>
+        </div>
+
+        <!-- Price -->
+        <div class="flex flex-col">
+          <label for="price" class="mb-2 font-medium">Price</label>
+          <p-inputNumber
+            id="price"
+            formControlName="price"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+            [min]="0"
+            styleClass="w-full"
+            [ngClass]="{'ng-invalid ng-dirty': tripForm.get('price')?.invalid && tripForm.get('price')?.touched}"
+          ></p-inputNumber>
+          <small *ngIf="tripForm.get('price')?.invalid && tripForm.get('price')?.touched" class="text-red-500">
+            Price is required and must be at least 0
+          </small>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="flex flex-col col-span-full">
+        <label for="description" class="mb-2 font-medium">Description</label>
+        <textarea
+          id="description"
+          pInputText
+          formControlName="description"
+          rows="5"
+          class="w-full resize-none"
+          [ngClass]="{'ng-invalid ng-dirty': tripForm.get('description')?.invalid && tripForm.get('description')?.touched}"
+        ></textarea>
+        <small *ngIf="tripForm.get('description')?.invalid && tripForm.get('description')?.touched" class="text-red-500">
+          Description is required
+        </small>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end gap-3 pt-4">
+        <button
+          pButton
+          type="button"
+          label="Cancel"
+          class="p-button-outlined"
+          (click)="onCancel()"
+        ></button>
+        <button
+          pButton
+          type="submit"
+          label="Create Trip"
+          [disabled]="tripForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </p-card>
+</div>

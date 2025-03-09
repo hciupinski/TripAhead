@@ -1,0 +1,43 @@
+<p-card styleClass="stats-card">
+  <ng-template pTemplate="header">
+    <div class="card-header">
+      <h3>Next Trip Reservations</h3>
+    </div>
+  </ng-template>
+  
+  <div class="trip-info">
+    <h4>{{ nextTripName }}</h4>
+    <p>Destination: {{ nextTripDestination }}</p>
+  </div>
+  
+  <div class="stats-container">
+    <div class="chart-container">
+      <p-chart type="doughnut" [data]="chartData" [options]="chartOptions" width="300px" height="300px"></p-chart>
+    </div>
+    
+    <div class="stats-info">
+      <div class="stat-block">
+        <div class="stat-label">Total Capacity</div>
+        <div class="stat-value">{{ availablePlaces }}</div>
+      </div>
+      
+      <div class="stat-block">
+        <div class="stat-label">Reservations</div>
+        <div class="stat-value">{{ reservations }}</div>
+      </div>
+      
+      <div class="stat-block">
+        <div class="stat-label">Available</div>
+        <div class="stat-value">{{ availablePlaces - reservations }}</div>
+      </div>
+      
+      <div class="stat-block occupancy-rate">
+        <div class="stat-label">Occupancy Rate</div>
+        <div class="stat-value">{{ occupancyRate }}%</div>
+        <div class="progress-container">
+          <div class="progress-bar" [style.width.%]="occupancyRate"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-card>

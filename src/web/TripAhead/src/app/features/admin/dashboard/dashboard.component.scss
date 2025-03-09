@@ -1,0 +1,39 @@
+.dashboard-container {
+  padding: 1.5rem;
+  background-color: #f1f5f9;
+  min-height: calc(100vh - 64px); /* Adjust based on your header height */
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+}
+
+.dashboard-widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.widget-row {
+  display: flex;
+  gap: 1.5rem;
+  
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.widget {
+  flex: 1;
+  
+  &.full-width {
+    width: 100%;
+  }
+}

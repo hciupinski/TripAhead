@@ -1,0 +1,39 @@
+<div class="card">
+  <h3>Available Trips</h3>
+  <p-table [value]="trips" [tableStyle]="{'min-width': '50rem'}" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" 
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Destination</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Available Places</th>
+        <th>Reservations</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-trip>
+      <tr>
+        <td>{{ trip.name }}</td>
+        <td>{{ trip.destination }}</td>
+        <td>{{ trip.startDate | date:'shortDate' }}</td>
+        <td>{{ trip.endDate | date:'shortDate' }}</td>
+        <td>{{ trip.availablePlaces }}</td>
+        <td>{{ trip.reservations }}</td>
+        <td>
+          <span [class]="trip.status === 'Open' ? 'p-badge p-badge-success' : 'p-badge p-badge-danger'">
+            {{ trip.status }}
+          </span>
+        </td>
+        <td>
+          <p-button icon="pi pi-eye" styleClass="p-button-rounded p-button-text" 
+            pTooltip="View Details"></p-button>
+          <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text p-button-warning" 
+            pTooltip="Edit Trip"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

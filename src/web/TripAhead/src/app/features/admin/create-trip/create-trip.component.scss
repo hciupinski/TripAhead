@@ -1,0 +1,31 @@
+@reference '../../../../styles.css'
+
+:host ::ng-deep {
+  .p-calendar, .p-inputnumber {
+    width: 100%;
+  }
+
+  .p-calendar .p-inputtext,
+  .p-inputnumber .p-inputtext,
+  .p-inputtext {
+    width: 100%;
+  }
+
+  .p-card {
+    .p-card-content {
+      padding-top: 0;
+    }
+  }
+
+  .ng-invalid.ng-touched {
+    @apply border-red-500;
+  }
+
+  .p-toast-message-success {
+    @apply bg-green-100 border-green-300;
+
+    .p-toast-message-content {
+      @apply text-green-800;
+    }
+  }
+}

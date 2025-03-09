@@ -1,0 +1,32 @@
+.card {
+  padding: 1.5rem;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  background: white;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+:host ::ng-deep {
+  .p-badge {
+    border-radius: 2px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    
+    &.p-badge-success {
+      background-color: #22C55E;
+      color: #FFF;
+    }
+    
+    &.p-badge-danger {
+      background-color: #EF4444;
+      color: #FFF;
+    }
+  }
+}
