@@ -1,2 +1,12 @@
-<p>layout works!</p>
-<router-outlet></router-outlet>
+<app-navbar />
+<div class="container">
+  <div class="grid-cols-2">
+    <div>
+      <app-sidebar />
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

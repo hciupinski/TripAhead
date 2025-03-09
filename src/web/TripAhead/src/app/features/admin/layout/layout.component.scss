@@ -1,0 +1,43 @@
+// layout.component.scss
+.layout-wrapper {
+  min-height: 100vh;
+  display: flex;
+
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .content-area {
+      flex-grow: 1;
+      background-color: var(--surface-ground);
+    }
+  }
+}
+
+// Custom styling
+.bg-indigo-500 {
+  background-color: #6366f1;
+}
+
+.bg-indigo-600 {
+  background-color: #4f46e5;
+}
+
+.border-indigo-300 {
+  border-color: #a5b4fc;
+}
+
+.text-indigo-100 {
+  color: #e0e7ff;
+}
+
+.hover\:bg-indigo-400:hover {
+  background-color: #818cf8;
+}
