@@ -1,26 +1,71 @@
-<div class="container mx-auto">
-  <div *ngIf="loading$ | async" class="loading-indicator">
-    Loading ...
+<div class="container mx-auto p-4">
+  <div class="mb-6">
+    <h1 class="text-3xl font-semibold text-slate-800 mb-2">Trips</h1>
+    <p class="text-slate-600">Manage available trips</p>
   </div>
 
-  <div *ngIf="error$ | async as error" class="error-message">
-    Error : {{ error }}
+  <div *ngIf="loading$ | async" class="flex justify-center my-8">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4"></p-progressSpinner>
   </div>
 
-  <h1>Trips</h1>
-  <table *ngIf="trips$ | async as trips">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let trip of trips; index as i;">
-      <td>{{trip.id}}</td>
-      <td>{{trip.name}}</td>
-    </tr>
-    </tbody>
-  </table>
+  <div *ngIf="error$ | async as error" class="p-4 bg-red-100 text-red-800 rounded-md mb-4">
+    <div class="flex items-center">
+      <i class="pi pi-exclamation-circle mr-2"></i>
+      <span>{{ error }}</span>
+    </div>
+  </div>
 
+  <p-card *ngIf="trips$ | async as trips" styleClass="shadow-sm">
+    <p-table 
+      [value]="trips" 
+      [tableStyle]="{'min-width': '60rem'}"
+      [paginator]="true" 
+      [rows]="10"
+      [rowHover]="true"
+      styleClass="p-datatable-sm"
+      [showCurrentPageReport]="true" 
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} trips"
+      responsiveLayout="scroll">
+      
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="destination">Destination <p-sortIcon field="destination"></p-sortIcon></th>
+          <th pSortableColumn="occupancy">Occupancy <p-sortIcon field="occupancy"></p-sortIcon></th>
+          <th pSortableColumn="cost">Cost <p-sortIcon field="cost"></p-sortIcon></th>
+          <th pSortableColumn="state">State <p-sortIcon field="state"></p-sortIcon></th>
+          <th pSortableColumn="startDate">Start Date <p-sortIcon field="startDate"></p-sortIcon></th>
+          <th pSortableColumn="endDate">End Date <p-sortIcon field="endDate"></p-sortIcon></th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-trip>
+        <tr (click)="navigateToTripDetails(trip.id)" class="cursor-pointer">
+          <td>{{ trip.name }}</td>
+          <td>{{ trip.destination }}</td>
+          <td>{{ trip.occupancy }}</td>
+          <td>${{ trip.cost | number:'1.2-2' }}</td>
+          <td>
+            <p-tag 
+              [value]="trip.state" 
+              [severity]="getSeverity(trip.state)">
+            </p-tag>
+          </td>
+          <td>{{ trip.startDate | date:'mediumDate' }}</td>
+          <td>{{ trip.endDate | date:'mediumDate' }}</td>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7" class="text-center p-4">
+            <div class="flex flex-col items-center justify-center py-6">
+              <i class="pi pi-inbox text-slate-300 text-5xl mb-4"></i>
+              <span class="text-slate-500">No trips found</span>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
 </div>

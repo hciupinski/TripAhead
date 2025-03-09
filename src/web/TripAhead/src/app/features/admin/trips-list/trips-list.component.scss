@@ -1,0 +1,46 @@
+/* Custom styles for trips list */
+:host ::ng-deep {
+  .p-card {
+    border-radius: 0.5rem;
+    
+    .p-card-body {
+      padding: 0;
+    }
+  }
+
+  .p-datatable {
+    .p-datatable-header {
+      background: transparent;
+      border: none;
+      padding: 1rem;
+    }
+
+    .p-sortable-column:focus {
+      box-shadow: none;
+    }
+
+    .p-paginator {
+      padding: 1rem;
+    }
+
+    tr {
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: #f8fafc;
+      }
+    }
+    
+    td {
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  .custom-spinner .p-progress-spinner-circle {
+    stroke: #38bdf8;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
