@@ -1,1 +1,86 @@
-<p>features works!</p>
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="start">
+            <h2 class="text-xl font-semibold">Trip Features</h2>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <button pButton pRipple label="New Feature" icon="pi pi-plus" class="p-button-success"
+                    (click)="openNew()"></button>
+        </ng-template>
+    </p-toolbar>
+
+
+    <ng-container *ngFor="let category of categories">
+        <p-accordion [value]="category">
+            <p-accordion-panel value="0">
+                <p-accordion-header>{{ category.toUpperCase() }}</p-accordion-header>
+                <p-accordion-content>
+                    <div class="flex flex-col gap-4 w-full"> <!-- Column layout for items -->
+                        <ng-container *ngFor="let item of getFilteredItems(category); trackBy: trackById">
+                            <p-card class="w-full shadow-md rounded-lg">
+                                <div class="flex flex-row w-full gap-4 justify-start">
+                                    <div class="field flex-1">
+                                        <label for="name-{{ item.id }}"
+                                               class="block text-sm font-medium mb-2">Name</label>
+                                        <input id="name-{{ item.id }}" type="text" pInputText [(ngModel)]="item.name"
+                                               class="w-full">
+                                    </div>
+                                    <div class="field flex-1">
+                                        <label for="description-{{ item.id }}" class="block text-sm font-medium mb-2">Description</label>
+                                        <input id="description-{{ item.id }}" type="text" pInputText
+                                               [(ngModel)]="item.description" class="w-full">
+                                    </div>
+                                    <div class="field flex-1">
+                                        <label for="price-{{ item.id }}"
+                                               class="block text-sm font-medium mb-2">Price</label>
+                                        <p-inputNumber id="price-{{ item.id }}" [(ngModel)]="item.price"
+                                                       class="w-full"></p-inputNumber>
+                                    </div>
+                                    <div class="flex justify-end pt-6">
+                                        <div class="field flex-1">
+                                            <p-button icon="pi pi-pencil" severity="primary" class="block" [text]="true" [rounded]="true" (onClick)="editOptionalItem(item)" />
+                                        </div>
+                                        <div class="field flex-1">
+                                            <p-button icon="pi pi-times" severity="danger" class="block" [text]="true" [rounded]="true" (onClick)="deleteOptionalItem(item)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-card>
+                        </ng-container>
+                    </div>
+                </p-accordion-content>
+            </p-accordion-panel>
+        </p-accordion>
+    </ng-container>
+</div>
+
+<p-dialog [(visible)]="featureDialog" [style]="{width: '450px'}" header="Feature Details" [modal]="true"
+          styleClass="flex flex-col">
+    <ng-template pTemplate="content">
+        <div class="field mb-4">
+            <label for="description">Category</label>
+            <p-dropdown [options]="categoriesOptions" [(ngModel)]="optionalItem.category" optionLabel="label" class="w-full" />
+        </div>
+
+        <div class="field mb-4">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="optionalItem.name" required autofocus class="w-full"/>
+        </div>
+
+        <div class="field mb-4">
+            <label for="description">Description</label>
+            <textarea pInputText id="description" [(ngModel)]="optionalItem.description" rows="3" class="w-full"></textarea>
+        </div>
+
+        <div class="field mb-4">
+            <label for="description">Price</label>
+            <p-inputNumber id="price-{{ optionalItem.id }}" [(ngModel)]="optionalItem.price"
+                           class="w-full"></p-inputNumber>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveOptionalItem()"></button>
+    </ng-template>
+</p-dialog>

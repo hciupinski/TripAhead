@@ -28,7 +28,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: Aura,
+        options: {
+          cssLayer: {
+            name: 'components'
+          },
+        },
       }
     }),
     provideStore({ auth: authReducer, trips: tripsReducer }),

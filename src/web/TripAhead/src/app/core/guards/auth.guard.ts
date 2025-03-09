@@ -15,7 +15,7 @@ const isAccessAllowed = async (
   console.log("redirect", window.location.origin + _.url)
   if (!authenticated) {
     await keycloak.login({
-      redirectUri: window.location.origin + _.url
+      redirectUri: window.location.origin
     });
   }
 

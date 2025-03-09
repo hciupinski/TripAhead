@@ -123,6 +123,21 @@
         </small>
       </div>
 
+      <div class="flex flex-col col-span-full">
+        <label for="page" class="mb-2 font-medium">Website</label>
+        <input
+          id="page"
+          type="text"
+          pInputText
+          formControlName="page"
+          class="w-full"
+          [ngClass]="{'ng-invalid ng-dirty': tripForm.get('page')?.invalid && tripForm.get('page')?.touched}"
+        />
+        <small *ngIf="tripForm.get('page')?.invalid && tripForm.get('page')?.touched" class="text-red-500">
+          Trip webpage is required
+        </small>
+      </div>
+
       <!-- Buttons -->
       <div class="flex justify-end gap-3 pt-4">
         <button

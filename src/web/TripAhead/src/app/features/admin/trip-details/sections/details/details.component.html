@@ -1,1 +1,58 @@
-<p>details works!</p>
+<div class="p-fluid grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Left Column -->
+    <div class="flex flex-col">
+        <p-card styleClass="h-full">
+            <h3 class="text-lg font-medium mb-4">Basic Information</h3>
+            <div class="field mb-4">
+                <label for="tripName" class="block text-sm font-medium mb-2">Trip Name</label>
+                <input id="tripName" type="text" pInputText [(ngModel)]="tripName" class="w-full">
+            </div>
+
+            <div class="field mb-4">
+                <label for="destination" class="block text-sm font-medium mb-2">Destination</label>
+                <input id="destination" type="text" pInputText [(ngModel)]="destination" class="w-full">
+            </div>
+
+            <div class="field mb-4">
+                <label for="description" class="block text-sm font-medium mb-2">Description</label>
+                <textarea id="description" pInputText [(ngModel)]="tripDescription" rows="5" class="w-full"></textarea>
+            </div>
+
+            <div class="field mb-4">
+                <label for="status" class="block text-sm font-medium mb-2">Status</label>
+                <p-dropdown id="status" [options]="statusOptions" [(ngModel)]="selectedStatus" optionLabel="label" class="w-full"></p-dropdown>
+            </div>
+        </p-card>
+    </div>
+
+    <!-- Right Column -->
+    <div class="flex flex-col">
+        <p-card styleClass="h-full">
+            <h3 class="text-lg font-medium mb-4">Trip Details</h3>
+            <div class="field mb-4">
+                <label for="startDate" class="block text-sm font-medium mb-2">Start Date</label>
+                <p-calendar id="startDate" [(ngModel)]="startDate" [showIcon]="true" class="w-full"></p-calendar>
+            </div>
+
+            <div class="field mb-4">
+                <label for="endDate" class="block text-sm font-medium mb-2">End Date</label>
+                <p-calendar id="endDate" [(ngModel)]="endDate" [showIcon]="true" class="w-full"></p-calendar>
+            </div>
+
+            <div class="field mb-4">
+                <label for="price" class="block text-sm font-medium mb-2">Price</label>
+                <p-inputNumber id="price" [(ngModel)]="price" mode="currency" currency="EUR" locale="en-EU" class="w-full"></p-inputNumber>
+            </div>
+
+            <div class="field mb-4">
+                <label for="maxParticipants" class="block text-sm font-medium mb-2">Max Participants</label>
+                <p-inputNumber id="maxParticipants" [(ngModel)]="maxParticipants" [showButtons]="true" [min]="1" class="w-full"></p-inputNumber>
+            </div>
+
+            <div class="field mb-4">
+              <label for="page" class="block text-sm font-medium mb-2">Webpage</label>
+              <input id="page" type="text" pInputText [(ngModel)]="page" class="w-full">
+            </div>
+        </p-card>
+    </div>
+</div>

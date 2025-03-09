@@ -1,1 +1,60 @@
-<p>trip-details works!</p>
+<div class="p-4 min-h-screen">
+    <div class="mb-4">
+        <p-toolbar styleClass="mb-4 shadow-sm">
+            <ng-template pTemplate="start">
+                <h1 class="text-2xl font-semibold">Trip Details</h1>
+            </ng-template>
+            <ng-template pTemplate="end">
+                <div class="flex gap-2">
+                    <p-button
+                        icon="pi pi-save"
+                        label="Save"
+                        styleClass="p-button-primary"
+                        [loading]="loading"
+                        (onClick)="saveTrip()">
+                    </p-button>
+                    <p-button
+                        icon="pi pi-times"
+                        label="Cancel"
+                        styleClass="p-button-secondary"
+                        (onClick)="cancelChanges()">
+                    </p-button>
+                    <p-button *ngIf="tripStatus === 'DRAFT'"
+                        icon="pi pi-check-circle"
+                        label="Activate"
+                        styleClass="p-button-success"
+                        pTooltip="Make trip visible to clients"
+                        (onClick)="activateTrip()">
+                    </p-button>
+                </div>
+            </ng-template>
+        </p-toolbar>
+    </div>
+
+    <div class="trip-content">
+        <p-tabs value="0">
+          <p-tablist>
+            <p-tab value="0">Details</p-tab>
+            <p-tab value="1">Rooms</p-tab>
+            <p-tab value="2">Features</p-tab>
+            <p-tab value="3">Reservations</p-tab>
+          </p-tablist>
+          <p-tabpanels>
+            <p-tabpanel value="0">
+              <app-details></app-details>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+              <app-rooms></app-rooms>
+            </p-tabpanel>
+            <p-tabpanel value="2">
+              <app-features></app-features>
+            </p-tabpanel>
+            <p-tabpanel value="3">
+              <app-clients></app-clients>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+    </div>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

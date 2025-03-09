@@ -48,7 +48,8 @@ export class CreateTripComponent {
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       maxCapacity: [null, [Validators.required, Validators.min(1)]],
-      price: [null, [Validators.required, Validators.min(0)]]
+      price: [null, [Validators.required, Validators.min(0)]],
+      page: [null, [Validators.required]]
     });
   }
 

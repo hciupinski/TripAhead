@@ -1,1 +1,52 @@
-<p>clients works!</p>
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="start">
+            <h2 class="text-xl font-semibold">Reservations</h2>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table
+        [value]="clients"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['name','email','phone','status']"
+        [(selection)]="selectedClients"
+        [rowHover]="true"
+        dataKey="id"
+        styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                <th style="width: 8rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-client>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="client"></p-tableCheckbox>
+                </td>
+                <td>{{client.name}}</td>
+                <td>{{client.email}}</td>
+                <td>{{client.phone}}</td>
+                <td>
+                    <span [class]="'client-badge status-' + client.status.toLowerCase()">{{client.status}}</span>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editClient(client)" pTooltip="Edit" tooltipPosition="top" [text]="true"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteClient(client)" pTooltip="Delete" tooltipPosition="top" [text]="true"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{clients ? clients.length : 0 }} clients.
+            </div>
+        </ng-template>
+    </p-table>
+</div>

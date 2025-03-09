@@ -1,1 +1,89 @@
-<p>rooms works!</p>
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="start">
+            <h2 class="text-xl font-semibold">Trip Rooms</h2>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <button pButton pRipple label="New Room" icon="pi pi-plus" class="p-button-success" (click)="openNew()"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table
+        [value]="rooms"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['name','type']"
+        [(selection)]="selectedRooms"
+        [rowHover]="true"
+        dataKey="id"
+        styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="type">Type <p-sortIcon field="type"></p-sortIcon></th>
+                <th pSortableColumn="capacity">Capacity <p-sortIcon field="capacity"></p-sortIcon></th>
+                <th pSortableColumn="pricePerNight">Price/Night <p-sortIcon field="pricePerNight"></p-sortIcon></th>
+                <th pSortableColumn="available">Available <p-sortIcon field="available"></p-sortIcon></th>
+                <th style="width: 8rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-room>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="room"></p-tableCheckbox>
+                </td>
+                <td>{{room.name}}</td>
+                <td>{{room.type}}</td>
+                <td>{{room.capacity}}</td>
+                <td>{{room.pricePerNight | currency:'EUR'}}</td>
+                <td>{{room.available}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editRoom(room)" pTooltip="Edit" tooltipPosition="top" [text]="true"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteRoom(room)" pTooltip="Delete" tooltipPosition="top" [text]="true"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{rooms ? rooms.length : 0 }} rooms.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="roomDialog" [style]="{width: '450px'}" header="Room Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="room.name" required autofocus />
+        </div>
+
+        <div class="field">
+            <label for="type">Type</label>
+            <p-dropdown id="type" [options]="roomTypes" [(ngModel)]="room.type" optionLabel="label" optionValue="value"></p-dropdown>
+        </div>
+
+        <div class="field">
+            <label for="capacity">Capacity</label>
+            <p-inputNumber id="capacity" [(ngModel)]="room.capacity" [showButtons]="true" [min]="1"></p-inputNumber>
+        </div>
+
+        <div class="field">
+            <label for="pricePerNight">Price per Night</label>
+            <p-inputNumber id="pricePerNight" [(ngModel)]="room.pricePerNight" mode="currency" currency="EUR" locale="en-EU"></p-inputNumber>
+        </div>
+
+        <div class="field">
+            <label for="available">Available Rooms</label>
+            <p-inputNumber id="available" [(ngModel)]="room.available" [showButtons]="true" [min]="0"></p-inputNumber>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveRoom()"></button>
+    </ng-template>
+</p-dialog>

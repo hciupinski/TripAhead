@@ -1,0 +1,27 @@
+.client-badge {
+    border-radius: 2px;
+    padding: .25em .5em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+    
+    &.status-confirmed {
+        background-color: #C8E6C9;
+        color: #256029;
+    }
+    
+    &.status-pending {
+        background-color: #FEEDAF;
+        color: #8A5340;
+    }
+    
+    &.status-canceled {
+        background-color: #FFCDD2;
+        color: #C63737;
+    }
+}
+
+.p-toolbar {
+    border-radius: 6px;
+}

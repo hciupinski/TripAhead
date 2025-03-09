@@ -13,8 +13,13 @@ export interface Trip {
   destination: string;
   startDate: string;
   endDate: string;
+  page: string;
 }
 
 export type TripsResponse = {
   trips: Trip[];
+}
+
+export type TripResponse = {
+  trip: Trip;
 }
